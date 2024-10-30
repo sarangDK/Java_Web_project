@@ -25,9 +25,9 @@ services:
       context: ./room-service
       dockerfile: ./Dockerfile
     ports:
-      - "8090:8090"
+      - "8091:8090"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/room-service
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5435/room-service
       - SPRING_DATASOURCE_USERNAME=admin
       - SPRING_DATASOURCE_PASSWORD=password
     depends_on:

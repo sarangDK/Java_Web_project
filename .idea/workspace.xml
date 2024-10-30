@@ -5,14 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7b3c832-3ec2-4841-8e95-e7515112bd5e" name="Changes" comment="oct.30">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/COMP3095-Assignment01.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/diagnostic.data/metrics.2024-10-30T21-50-20Z-00000" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/diagnostic.data/metrics.2024-10-30T22-05-42Z-00000" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/journal/WiredTigerLog.0000000004" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/WiredTiger.turtle" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/WiredTiger.turtle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/WiredTiger.wt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/WiredTiger.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/collection-2--3135388340748344688.wt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/collection-2--3135388340748344688.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/collection-4--3135388340748344688.wt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/collection-4--3135388340748344688.wt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/diagnostic.data/metrics.2024-10-30T21-16-15Z-00000" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/diagnostic.data/metrics.2024-10-30T21-16-15Z-00000" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/diagnostic.data/metrics.interim" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/diagnostic.data/metrics.interim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/journal/WiredTigerLog.0000000002" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/journal/WiredTigerLog.0000000002" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/index-3--3135388340748344688.wt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/index-3--3135388340748344688.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/index-5--3135388340748344688.wt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/index-5--3135388340748344688.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/index-6--3135388340748344688.wt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/index-6--3135388340748344688.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/journal/WiredTigerLog.0000000002" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/sizeStorer.wt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/sizeStorer.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/postgres/base/1/pg_internal.init" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/postgres/base/1/pg_internal.init" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/postgres/base/16384/2610" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/postgres/base/16384/2610" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/postgres/base/16384/pg_internal.init" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/postgres/base/16384/pg_internal.init" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/postgres/base/5/pg_internal.init" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/postgres/base/5/pg_internal.init" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/postgres/global/pg_control" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/postgres/global/pg_control" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/postgres/global/pg_internal.init" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/postgres/global/pg_internal.init" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/postgres/pg_wal/000000010000000000000001" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/postgres/pg_wal/000000010000000000000001" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/postgres/postmaster.pid" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/postgres/postmaster.pid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/room-service/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/room-service/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/room-service/src/main/java/ca/gbc/roomservice/model/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/room-service/src/main/java/ca/gbc/roomservice/model/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/room-service/src/test/java/ca/gbc/roomservice/RoomServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/room-service/src/test/java/ca/gbc/roomservice/RoomServiceApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,24 +82,54 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;DELOMBOK_PRE_COMMIT&quot;: &quot;false&quot;,
-    &quot;Gradle.Build Assignment01-parent.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/da980/IdeaProjects/COMP3095-Assignment01&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DELOMBOK_PRE_COMMIT": "false",
+    "Gradle.Build Assignment01-parent.executor": "Run",
+    "Gradle.RoomServiceApplicationTests.createRoomTest.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.RoomServiceApplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/da980/IdeaProjects/COMP3095-Assignment01",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Spring Boot.RoomServiceApplication">
+}]]></component>
+  <component name="RunManager" selected="Gradle.RoomServiceApplicationTests.createRoomTest">
+    <configuration name="RoomServiceApplicationTests.createRoomTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Assignment01-parent" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":room-service:test" />
+            <option value="--tests" />
+            <option value="&quot;ca.gbc.roomservice.RoomServiceApplicationTests.createRoomTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="BookingServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="Assignment01-parent.booking-service.main" />
@@ -97,6 +146,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.RoomServiceApplicationTests.createRoomTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -124,7 +178,7 @@
       <workItem from="1730323282461" duration="124000" />
       <workItem from="1730323470431" duration="165000" />
       <workItem from="1730323645742" duration="507000" />
-      <workItem from="1730324169430" duration="12000" />
+      <workItem from="1730324169430" duration="3640000" />
     </task>
     <task id="LOCAL-00001" summary="oct.30">
       <option name="closed" value="true" />
@@ -134,7 +188,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730323226991</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="oct.30">
+      <option name="closed" value="true" />
+      <created>1730324293778</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1730324293778</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
