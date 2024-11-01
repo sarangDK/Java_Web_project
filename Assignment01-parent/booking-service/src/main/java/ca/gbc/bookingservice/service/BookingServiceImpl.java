@@ -26,7 +26,7 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public BookingResponse createBooking(BookingRequest bookingRequest) {
 
-        Optional<Booking> existingBooking = bookingRepository.findByRoom_id(bookingRequest.room_id());
+        Optional<Booking> existingBooking = bookingRepository.findByRoomid(bookingRequest.room_id());
 
         if (existingBooking.isPresent()) {
             throw new RuntimeException("Room is already booked");
