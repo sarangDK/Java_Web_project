@@ -19,7 +19,6 @@ services:
       - spring
 
 
-
   room-service:
     build:
       context: ./room-service
@@ -27,11 +26,11 @@ services:
     ports:
       - "8091:8090"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5435/room-service
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/room-service
       - SPRING_DATASOURCE_USERNAME=admin
       - SPRING_DATASOURCE_PASSWORD=password
     depends_on:
-      - postgres
+      - postgres-roomService
     networks:
       - spring
 
@@ -51,9 +50,11 @@ services:
     networks:
       - spring
 
-  postgres:
+
+
+  postgres-roomService:
     image: postgres:latest
-    container_name: Assignment01-postgres
+    container_name: postgres-roomService
     environment:
       - POSTGRES_DB=room-service
       - POSTGRES_USER=admin
@@ -62,9 +63,10 @@ services:
       - "5435:5432"
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
-      - ./local-docker-file/mongo/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./local-docker-file/postgres/init/room/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - spring
+
 
   mongo-express:
     image: mongo-express
@@ -83,14 +85,15 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4
+
     ports:
-      - "8999:90"
-    container_name: Assignment01-pgadmin-single
+      - "8999:80"
+    container_name: pgadmin
     environment:
       - PGADMIN_DEFAULT_EMAIL=user@domain.ca
       - PGADMIN_DEFAULT_PASSWORD=password
     depends_on:
-      - postgres
+      - postgres-roomService
     networks:
       - spring
 volumes:

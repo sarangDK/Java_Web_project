@@ -27,6 +27,4 @@ ENV PGADMIN_DEFAULT_EMAIL=user@domain.ca \
 
 EXPOSE 8091
 
-#ENTYPOINT means that the container will run the command that is specified
-# in the ENTRYPOINT when the container starts.
 ENTRYPOINT ["java", "-jar", "/app/room-service.jar"]
