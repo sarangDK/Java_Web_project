@@ -21,7 +21,7 @@ public class RoomServiceImpl implements RoomService {
 
 
     @Override
-    public void createRoom(RoomRequest roomRequest) {
+    public RoomResponse createRoom(RoomRequest roomRequest) {
         Room room = Room.builder()
                 .room_id(generateRoomId())
                 .room_name(roomRequest.room_name())
@@ -31,6 +31,7 @@ public class RoomServiceImpl implements RoomService {
                 .build();
 
         roomRepository.save(room);
+        return mapRoomToRoomResponse(room);
     }
 
     @Override

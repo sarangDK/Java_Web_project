@@ -58,7 +58,7 @@ class RoomServiceApplicationTests {
                 .contentType("application/json")
                 .body(requestBody)
                 .when()
-                .post("/api/rooms") // Ensure this matches your controller endpoint
+                .post("/api/rooms")
                 .then()
                 .log().all()
                 .statusCode(201)

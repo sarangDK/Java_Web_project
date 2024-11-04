@@ -6,7 +6,7 @@ import ca.gbc.roomservice.dto.RoomResponse;
 import java.util.List;
 
 public interface RoomService {
-    void createRoom(RoomRequest roomRequest);
+    RoomResponse createRoom(RoomRequest roomRequest);
     List<RoomResponse> getAllRooms();
     RoomResponse getRoomById(Long roomId);
     RoomResponse updateRoom(Long id, RoomRequest roomRequest);

@@ -19,10 +19,10 @@ public class RoomController {
     // Create a new room
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public String createRoom(@RequestBody RoomRequest roomRequest) {
-        roomService.createRoom(roomRequest);
-        return "Room created successfully";
+    public RoomResponse createRoom(@RequestBody RoomRequest roomRequest) {
+        return roomService.createRoom(roomRequest);
     }
+
 
     // Get all rooms
     @GetMapping
@@ -30,25 +30,24 @@ public class RoomController {
         return roomService.getAllRooms();
     }
 
-    // Get room by ID
+    // Get room by ID operation
     @GetMapping("/{id}")
     public RoomResponse getRoomById(@PathVariable Long id) {
         return roomService.getRoomById(id);
     }
 
-    // Update room
+    // Update room operation
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public String updateRoom(@PathVariable Long id, @RequestBody RoomRequest roomRequest) {
-        roomService.updateRoom(id, roomRequest);
-        return "Room updated successfully";
+    public RoomResponse updateRoom(@PathVariable Long id, @RequestBody RoomRequest roomRequest) {
+        return roomService.updateRoom(id, roomRequest);
     }
 
-    // Delete room
+    // Delete room operation
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public String deleteRoom(@PathVariable Long id) {
+    public void deleteRoom(@PathVariable Long id) {
         roomService.deleteRoom(id);
-        return "Room deleted successfully";
     }
+
 }
