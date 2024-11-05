@@ -1,6 +1,5 @@
 package ca.gbc.bookingservice.service;
 
-
 import ca.gbc.bookingservice.dto.BookingRequest;
 import ca.gbc.bookingservice.dto.BookingResponse;
 import ca.gbc.bookingservice.model.Booking;
@@ -9,11 +8,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import org.springframework.data.mongodb.core.query.Query;import java.util.List;
+import java.util.List;
 import java.util.Optional;
-
 
 @Service
 @Slf4j
@@ -25,12 +24,11 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public BookingResponse createBooking(BookingRequest bookingRequest) {
+//        Optional<Booking> existingBooking = bookingRepository.findByRoom_id(bookingRequest.room_id());
 
-        Optional<Booking> existingBooking = bookingRepository.findByRoomid(bookingRequest.room_id());
-
-        if (existingBooking.isPresent()) {
-            throw new RuntimeException("Room is already booked");
-        }
+//        if (existingBooking.isPresent()) {
+//            throw new RuntimeException("Room is already booked");
+//        }
         log.debug("Creating booking for user: {}", bookingRequest.user_id());
         Booking booking = Booking.builder()
                 .user_id(bookingRequest.user_id())
@@ -56,7 +54,7 @@ public class BookingServiceImpl implements BookingService {
     public List<BookingResponse> getAllBookings() {
         log.debug("Returning all bookings");
         List<Booking> bookings = bookingRepository.findAll();
-        return bookings.stream().map(this :: mapBookingToBookingResponse).toList();
+        return bookings.stream().map(this::mapBookingToBookingResponse).toList();
     }
 
     @Override
@@ -120,7 +118,5 @@ public class BookingServiceImpl implements BookingService {
         } else {
             log.error("Booking {} is not found", booking_id);
         }
-
     }
-
 }

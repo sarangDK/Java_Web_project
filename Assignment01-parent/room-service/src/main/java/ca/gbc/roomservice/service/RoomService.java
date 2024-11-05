@@ -11,4 +11,5 @@ public interface RoomService {
     RoomResponse getRoomById(Long roomId);
     RoomResponse updateRoom(Long id, RoomRequest roomRequest);
     void deleteRoom(Long roomId);
+    public boolean isRoomAvailable(Long room_id, Boolean room_availability);
 }
