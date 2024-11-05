@@ -20,6 +20,7 @@ services:
     build:
       context: ./room-service
       dockerfile: ./Dockerfile
+    container_name: room-service
     ports:
       - "8091:8090"
     environment:
@@ -29,6 +30,23 @@ services:
       - SPRING_DATASOURCE_PASSWORD=password
     depends_on:
       - postgres-roomService
+    networks:
+      - spring
+
+  user-service:
+    build:
+      context: ./user-service
+      dockerfile: ./Dockerfile
+    container_name: user-service
+    ports:
+      - "8092:8090"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-userService:5432/user-service
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=password
+    depends_on:
+      - postgres-userService
     networks:
       - spring
 
@@ -56,8 +74,23 @@ services:
     ports:
       - "5435:5432"
     volumes:
-      - ./data/postgres:/var/lib/postgresql/data
+      - ./data/postgres/room:/var/lib/postgresql/data
       - ./local-docker-file/postgres/init/room/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - spring
+
+  postgres-userService:
+    image: postgres:latest
+    container_name: postgres-userService
+    environment:
+      - POSTGRES_DB=user-service
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+    ports:
+      - "5436:5432"
+    volumes:
+      - ./data/postgres/user:/var/lib/postgresql/data
+      - ./local-docker-file/postgres/init/user/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - spring
 
@@ -85,6 +118,7 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=password
     depends_on:
       - postgres-roomService
+      - postgres-userService
     networks:
       - spring
 
