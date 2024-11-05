@@ -5,8 +5,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7b3c832-3ec2-4841-8e95-e7515112bd5e" name="Changes" comment="nov 1.">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/booking-service/Assignment01-parent.booking-service.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/booking-service/Assignment01-parent.booking-service.test.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assignment01-parent/booking-service/src/main/java/ca/gbc/bookingservice/client/RoomServiceClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assignment01-parent/booking-service/src/test/java/ca/gbc/bookingservice/stub/roomClientStub.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assignment01-parent/booking-service/src/test/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/diagnostic.data/metrics.2024-11-04T21-16-47Z-00000" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/diagnostic.data/metrics.interim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/journal/WiredTigerLog.0000000004" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/journal/WiredTigerPreplog.0000000001" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/journal/WiredTigerPreplog.0000000002" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assignment01-parent/data/postgres/base/16384/pg_internal.init" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assignment01-parent/data/postgres/global/pg_internal.init" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/booking-service/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/booking-service/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/booking-service/src/main/java/ca/gbc/bookingservice/dto/BookingResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/booking-service/src/main/java/ca/gbc/bookingservice/dto/BookingResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/booking-service/src/main/java/ca/gbc/bookingservice/model/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/booking-service/src/main/java/ca/gbc/bookingservice/model/Booking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/booking-service/src/main/java/ca/gbc/bookingservice/repository/BookingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/booking-service/src/main/java/ca/gbc/bookingservice/repository/BookingRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/booking-service/src/main/java/ca/gbc/bookingservice/service/BookingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/booking-service/src/main/java/ca/gbc/bookingservice/service/BookingServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/booking-service/src/main/resources/application-docker.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/booking-service/src/main/resources/application-docker.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/booking-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/booking-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/booking-service/src/test/java/ca/gbc/bookingservice/BookingServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/booking-service/src/test/java/ca/gbc/bookingservice/BookingServiceApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/WiredTiger.turtle" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/WiredTiger.turtle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/WiredTiger.wt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/WiredTiger.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/collection-2--3303563546288877151.wt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/collection-2--3303563546288877151.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/collection-4--3303563546288877151.wt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/collection-4--3303563546288877151.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/index-3--3303563546288877151.wt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/index-3--3303563546288877151.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/index-5--3303563546288877151.wt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/index-5--3303563546288877151.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/index-6--3303563546288877151.wt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/index-6--3303563546288877151.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/sizeStorer.wt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/products/sizeStorer.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/postgres/global/pg_control" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/postgres/global/pg_control" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/postgres/pg_wal/000000010000000000000001" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/postgres/pg_wal/000000010000000000000001" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/postgres/postmaster.pid" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/postgres/postmaster.pid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/init/mongo/docker-entrypoint-initdb.d/mongo-init.js/mongo-init.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/init/mongo/mongo-init.js/mongo-init.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/room-service/src/main/java/ca/gbc/roomservice/RoomServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/room-service/src/main/java/ca/gbc/roomservice/RoomServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/room-service/src/main/java/ca/gbc/roomservice/service/RoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/room-service/src/main/java/ca/gbc/roomservice/service/RoomService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/room-service/src/main/java/ca/gbc/roomservice/service/RoomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/room-service/src/main/java/ca/gbc/roomservice/service/RoomServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +66,13 @@
         </projects_view>
       </state>
     </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -65,6 +109,8 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "DELOMBOK_PRE_COMMIT": "false",
+    "Gradle.BookingServiceApplicationTests.createBookingTests.executor": "Run",
+    "Gradle.BookingServiceApplicationTests.getAllBookingsTests.executor": "Run",
     "Gradle.Build Assignment01-parent.executor": "Run",
     "Gradle.RoomServiceApplicationTests.createRoomTest.executor": "Run",
     "Gradle.RoomServiceApplicationTests.executor": "Run",
@@ -73,15 +119,13 @@
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.BookingServiceApplication.executor": "Run",
     "Spring Boot.RoomServiceApplication.executor": "Run",
-    "WebServerToolWindowFactoryState": "false",
-    "android.gradle.sync.needed": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/biradon/Desktop/comp3095/assignment1/COMP3095-Assignment01/Assignment01-parent",
+    "last_opened_file_path": "C:/Users/da980/IdeaProjects/COMP3095-Assignment01/Assignment01-parent/init/mongo/mongo-init.js",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -100,7 +144,55 @@
       <recent name="C:\Users\da980\IdeaProjects\COMP3095-Assignment01\Assignment01-parent\local-docker-file\mongo\docker-entrypoint-initdb.d\mongo-init.js" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.RoomServiceApplicationTests.createRoomTest">
+  <component name="RunManager" selected="Spring Boot.RoomServiceApplication">
+    <configuration name="BookingServiceApplicationTests.createBookingTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Assignment01-parent" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":booking-service:test" />
+            <option value="--tests" />
+            <option value="&quot;ca.gbc.bookingservice.BookingServiceApplicationTests.createBookingTests&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="BookingServiceApplicationTests.getAllBookingsTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Assignment01-parent" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":booking-service:test" />
+            <option value="--tests" />
+            <option value="&quot;ca.gbc.bookingservice.BookingServiceApplicationTests.getAllBookingsTests&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="RoomServiceApplicationTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -191,8 +283,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.RoomServiceApplicationTests.createRoomTest" />
         <item itemvalue="Gradle.RoomServiceApplicationTests.getAllRoomsTest" />
+        <item itemvalue="Gradle.BookingServiceApplicationTests.getAllBookingsTests" />
+        <item itemvalue="Gradle.RoomServiceApplicationTests.createRoomTest" />
+        <item itemvalue="Gradle.BookingServiceApplicationTests.createBookingTests" />
         <item itemvalue="Gradle.RoomServiceApplicationTests" />
       </list>
     </recent_temporary>
@@ -245,8 +339,19 @@
       <workItem from="1730506513492" duration="3234000" />
       <workItem from="1730580657648" duration="1546000" />
       <workItem from="1730582420483" duration="174000" />
-      <workItem from="1730582602669" duration="3929000" />
-      <workItem from="1730820839186" duration="118000" />
+      <workItem from="1730582602669" duration="5120000" />
+      <workItem from="1730725445320" duration="6000" />
+      <workItem from="1730732588158" duration="191000" />
+      <workItem from="1730752489435" duration="1304000" />
+      <workItem from="1730753986499" duration="1740000" />
+      <workItem from="1730755869092" duration="254000" />
+      <workItem from="1730756152432" duration="344000" />
+      <workItem from="1730756555425" duration="96000" />
+      <workItem from="1730756676169" duration="143000" />
+      <workItem from="1730756869675" duration="77000" />
+      <workItem from="1730757002533" duration="19000" />
+      <workItem from="1730757112893" duration="511000" />
+      <workItem from="1730757755867" duration="3734000" />
     </task>
     <task id="LOCAL-00001" summary="oct.30">
       <option name="closed" value="true" />
@@ -296,7 +401,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730501264415</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="nov 1.">
+      <option name="closed" value="true" />
+      <created>1730680880261</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1730680880263</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -307,5 +420,20 @@
     <MESSAGE value="oct.30" />
     <MESSAGE value="nov 1." />
     <option name="LAST_COMMIT_MESSAGE" value="nov 1." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/Assignment01-parent/booking-service/src/test/java/ca/gbc/bookingservice/BookingServiceApplicationTests.java</url>
+          <line>66</line>
+          <properties class="ca.gbc.bookingservice.BookingServiceApplicationTests" method="getAllBookingsTests">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

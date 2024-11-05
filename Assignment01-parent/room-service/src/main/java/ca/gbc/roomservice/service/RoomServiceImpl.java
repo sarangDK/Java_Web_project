@@ -20,6 +20,14 @@ public class RoomServiceImpl implements RoomService {
     private final RoomRepository roomRepository;
 
 
+
+    @Override
+    public boolean isRoomAvailable(Long room_id, Boolean room_availability) {
+        Room room = roomRepository.findById(room_id)
+                .orElseThrow(() -> new RuntimeException("Room not found"));
+        return room.getRoom_availability();
+    }
+
     @Override
     public RoomResponse createRoom(RoomRequest roomRequest) {
         Room room = Room.builder()

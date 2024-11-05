@@ -19,6 +19,7 @@ public class Booking {
     private String booking_id;
     private String user_id;
     private Long room_id;
+
     private Date start_time;
     private Date end_time;
     private String purpose;

@@ -11,4 +11,5 @@ public record BookingResponse(
         String purpose
 ) {
 
+
 }
