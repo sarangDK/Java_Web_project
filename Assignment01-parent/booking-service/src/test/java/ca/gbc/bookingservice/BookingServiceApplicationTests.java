@@ -1,16 +1,29 @@
 package ca.gbc.bookingservice;
-
+import static com.github.tomakehurst.wiremock.client.WireMock.configureFor;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import ca.gbc.bookingservice.stub.roomClientStub;
+import com.github.tomakehurst.wiremock.WireMockServer;
+import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import io.restassured.RestAssured;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.testcontainers.containers.MongoDBContainer;
+import static io.restassured.path.json.JsonPath.from;
+
+
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class BookingServiceApplicationTests {
+
+    private static WireMockServer wireMockServer;
+
 
     @ServiceConnection
 
@@ -23,6 +36,20 @@ class BookingServiceApplicationTests {
     static {
         mongoDbContainer.start();
         System.out.println("MongoDB container started: " + mongoDbContainer.isRunning());
+    }
+
+
+    @BeforeAll
+    static void setupWireMockServer() {
+        wireMockServer = new WireMockServer(WireMockConfiguration.wireMockConfig().dynamicPort());
+        wireMockServer.start();
+        configureFor("localhost", wireMockServer.port());
+        System.out.println("WireMock server started on port: " + wireMockServer.port());
+    }
+
+    @AfterAll
+    static void teardown() {
+        wireMockServer.stop();
     }
 
     @BeforeEach
@@ -40,10 +67,10 @@ class BookingServiceApplicationTests {
 
         String requestBody = """
             {
-                "user_id": "1",
-                "room_id": 1,
-                "start_time": "2021-10-10T10:00:00.000+00:00",
-                "end_time": "2021-10-10T11:00:00.000+00:00",
+                "userId": "1",
+                "roomId": 1,
+                "checkIn": "2021-10-10T10:00:00.000+00:00",
+                "checkOut": "2021-10-10T11:00:00.000+00:00",
                 "purpose": "Meeting"
             }
             """;
@@ -56,10 +83,10 @@ class BookingServiceApplicationTests {
                 .then()
                 .log().all()
                 .statusCode(201)
-                .body("user_id", Matchers.notNullValue())
-                .body("room_id", Matchers.equalTo(1))
-                .body("start_time", Matchers.equalTo("2021-10-10T10:00:00.000+00:00"))
-                .body("end_time", Matchers.equalTo("2021-10-10T11:00:00.000+00:000"))
+                .body("userId", Matchers.notNullValue())
+                .body("roomId", Matchers.equalTo(1))
+                .body("checkIn", Matchers.equalTo("2021-10-10T10:00:00.000+00:00"))
+                .body("checkOut", Matchers.equalTo("2021-10-10T11:00:00.000+00:00"))
                 .body("purpose", Matchers.equalTo("Meeting"));
     }
 
@@ -68,10 +95,10 @@ class BookingServiceApplicationTests {
 
         String requestBody = """
             {
-                "user_id": "1",
-                "room_id": 1,
-                "start_time": "2021-10-10T10:00:00",
-                "end_time": "2021-10-10T11:00:00",
+                "userId": "1",
+                "roomId": 1,
+                "checkIn": "2021-10-10T10:00:00",
+                "checkOut": "2021-10-10T11:00:00",
                 "purpose": "Meeting"
             }
             """;
@@ -84,10 +111,10 @@ class BookingServiceApplicationTests {
                 .then()
                 .log().all()
                 .statusCode(201)
-                .body("user_id", Matchers.notNullValue())
-                .body("room_id", Matchers.equalTo(1))
-                .body("start_time", Matchers.equalTo("2021-10-10T10:00:00.000+00:00"))
-                .body("end_time", Matchers.equalTo("2021-10-10T11:00:00.000+00:00"))
+                .body("userId", Matchers.notNullValue())
+                .body("roomId", Matchers.equalTo(1))
+                .body("checkIn", Matchers.equalTo("2021-10-10T10:00:00.000+00:00"))
+                .body("checkOut", Matchers.equalTo("2021-10-10T11:00:00.000+00:00"))
                 .body("purpose", Matchers.equalTo("Meeting"));
 
         RestAssured.given()
@@ -97,11 +124,45 @@ class BookingServiceApplicationTests {
                 .log().all()
                 .statusCode(200)
                 .body("size()", Matchers.greaterThan(0))
-                .body("[0].user_id", Matchers.notNullValue())
-                .body("[0].room_id", Matchers.equalTo(1))
-                .body("[0].start_time", Matchers.equalTo("2021-10-10T10:00:00.000+00:00"))
-                .body("[0].end_time", Matchers.equalTo("2021-10-10T11:00:00.000+00:00"))
+                .body("[0].userId", Matchers.notNullValue())
+                .body("[0].roomId", Matchers.equalTo(1))
+                .body("[0].checkIn", Matchers.equalTo("2021-10-10T10:00:00.000+00:00"))
+                .body("[0].checkOut", Matchers.equalTo("2021-10-10T11:00:00.000+00:00"))
                 .body("[0].purpose", Matchers.equalTo("Meeting"));
+    }
+
+
+    @Test
+    void shouldUserBook() {
+        String requestBody = """
+            {
+                "userId": "1",
+                "roomId": 1,
+                "checkIn": "2021-10-10T10:00:00",
+                "checkOut": "2021-10-10T11:00:00",
+                "purpose": "Meeting",
+                "availability": true
+            }
+            """;
+
+        roomClientStub.stubRoomCall(1L, true);
+
+        var response = RestAssured.given()
+                .contentType("application/json")
+                .body(requestBody)
+                .when()
+                .post("/api/v1/booking")
+                .then()
+                .log().all()
+                .statusCode(201)
+                .extract()
+                .body().asString();
+
+        assertThat(from(response).getString("userId"), equalTo("1"));
+        assertThat(from(response).getInt("roomId"), equalTo(1));
+        assertThat(from(response).getString("checkIn"), equalTo("2021-10-10T10:00:00.000+00:00"));
+        assertThat(from(response).getString("checkOut"), equalTo("2021-10-10T11:00:00.000+00:00"));
+        assertThat(from(response).getString("purpose"), equalTo("Meeting"));
     }
 
 }
