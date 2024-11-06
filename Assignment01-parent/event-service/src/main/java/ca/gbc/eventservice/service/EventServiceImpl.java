@@ -24,7 +24,7 @@ public class EventServiceImpl implements EventService {
     public EventResponse createEvent(EventRequest eventRequest) {
         log.debug("Create event for room: {}", eventRequest.roomId());
         Event event = Event.builder()
-                .roomId(Long.valueOf(eventRequest.roomId()))
+                .roomId(eventRequest.roomId())
                 .eventName(eventRequest.eventName())
                 .eventType(eventRequest.eventType())
                 .expectedAttendees(eventRequest.expectedAttendees())
@@ -81,7 +81,7 @@ public class EventServiceImpl implements EventService {
         Event event = mongoTemplate.findOne(query, Event.class);
 
         if (event != null) {
-            event.setRoomId(Long.valueOf(eventRequest.roomId()));
+            event.setRoomId(eventRequest.roomId());
             event.setEventName(eventRequest.eventName());
             event.setEventType(eventRequest.eventType());
             event.setExpectedAttendees(eventRequest.expectedAttendees());
