@@ -24,29 +24,25 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public BookingResponse createBooking(BookingRequest bookingRequest) {
-//        Optional<Booking> existingBooking = bookingRepository.findByRoom_id(bookingRequest.room_id());
 
-//        if (existingBooking.isPresent()) {
-//            throw new RuntimeException("Room is already booked");
-//        }
-        log.debug("Creating booking for user: {}", bookingRequest.user_id());
+        log.debug("Creating booking for user: {}", bookingRequest.userId());
         Booking booking = Booking.builder()
-                .user_id(bookingRequest.user_id())
-                .room_id(bookingRequest.room_id())
-                .start_time(bookingRequest.start_time())
-                .end_time(bookingRequest.end_time())
+                .userId(bookingRequest.userId())
+                .roomId(bookingRequest.roomId())
+                .checkIn(bookingRequest.checkIn())
+                .checkOut(bookingRequest.checkOut())
                 .purpose(bookingRequest.purpose())
                 .build();
 
         bookingRepository.save(booking);
-        log.info("Booking {} is saved successfully", booking.getBooking_id());
+        log.info("Booking {} is saved successfully", booking.getBookingId());
 
         return new BookingResponse(
-                booking.getBooking_id(),
-                booking.getUser_id(),
-                booking.getRoom_id(),
-                booking.getStart_time(),
-                booking.getEnd_time(),
+                booking.getBookingId(),
+                booking.getUserId(),
+                booking.getRoomId(),
+                booking.getCheckIn(),
+                booking.getCheckOut(),
                 booking.getPurpose());
     }
 
@@ -58,47 +54,47 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public BookingResponse getBookingById(String booking_id) {
-        log.debug("Retrieving booking by id: {}", booking_id);
+    public BookingResponse getBookingById(String bookingId) {
+        log.debug("Retrieving booking by id: {}", bookingId);
         Query query = new Query();
-        query.addCriteria(Criteria.where("booking_id").is(booking_id));
+        query.addCriteria(Criteria.where("bookingId").is(bookingId));
         Booking booking = mongoTemplate.findOne(query, Booking.class);
 
         if (booking != null) {
-            log.info("Booking {} retrieved successfully", booking_id);
+            log.info("Booking {} retrieved successfully", bookingId);
             return mapBookingToBookingResponse(booking);
         } else {
-            log.error("Booking {} not found", booking_id);
+            log.error("Booking {} not found", bookingId);
             return null;
         }
     }
 
     private BookingResponse mapBookingToBookingResponse(Booking booking) {
         return new BookingResponse(
-                booking.getBooking_id(),
-                booking.getUser_id(),
-                booking.getRoom_id(),
-                booking.getStart_time(),
-                booking.getEnd_time(),
+                booking.getBookingId(),
+                booking.getUserId(),
+                booking.getRoomId(),
+                booking.getCheckIn(),
+                booking.getCheckOut(),
                 booking.getPurpose());
     }
 
     @Override
     public String updateBooking(String booking_id, BookingRequest bookingRequest) {
-        log.debug("Revise booking for user: {}", bookingRequest.user_id());
+        log.debug("Revise booking for user: {}", bookingRequest.userId());
         Query query = new Query();
         query.addCriteria(Criteria.where("booking_id").is(booking_id));
         Booking booking = mongoTemplate.findOne(query, Booking.class);
 
         if (booking != null) {
-            booking.setUser_id(bookingRequest.user_id());
-            booking.setRoom_id(bookingRequest.room_id());
-            booking.setStart_time(bookingRequest.start_time());
-            booking.setEnd_time(bookingRequest.end_time());
+            booking.setUserId(bookingRequest.userId());
+            booking.setRoomId(bookingRequest.roomId());
+            booking.setCheckIn(bookingRequest.checkIn());
+            booking.setCheckOut(bookingRequest.checkOut());
             booking.setPurpose(bookingRequest.purpose());
             bookingRepository.save(booking);
-            log.info("Booking {} is updated successfully", booking.getBooking_id());
-            return booking.getBooking_id();
+            log.info("Booking {} is updated successfully", booking.getBookingId());
+            return booking.getBookingId();
         } else {
             log.error("Booking {} is not found", booking_id);
             return null;
@@ -106,17 +102,17 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public void deleteBooking(String booking_id) {
-        log.debug("Deleting booking: {}", booking_id);
+    public void deleteBooking(String bookingId) {
+        log.debug("Deleting booking: {}", bookingId);
         Query query = new Query();
-        query.addCriteria(Criteria.where("booking_id").is(booking_id));
+        query.addCriteria(Criteria.where("booking_id").is(bookingId));
         Booking booking = mongoTemplate.findOne(query, Booking.class);
 
         if (booking != null) {
             bookingRepository.delete(booking);
-            log.info("Booking {} is deleted successfully", booking_id);
+            log.info("Booking {} is deleted successfully", bookingId);
         } else {
-            log.error("Booking {} is not found", booking_id);
+            log.error("Booking {} is not found", bookingId);
         }
     }
 }

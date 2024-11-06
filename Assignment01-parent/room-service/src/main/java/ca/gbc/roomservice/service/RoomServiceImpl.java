@@ -22,20 +22,20 @@ public class RoomServiceImpl implements RoomService {
 
 
     @Override
-    public boolean isRoomAvailable(Long room_id, Boolean room_availability) {
-        Room room = roomRepository.findById(room_id)
+    public boolean isRoomAvailable(Long roomId, Boolean roomAvailability) {
+        Room room = roomRepository.findById(roomId)
                 .orElseThrow(() -> new RuntimeException("Room not found"));
-        return room.getRoom_availability();
+        return room.getRoomAvailability();
     }
 
     @Override
     public RoomResponse createRoom(RoomRequest roomRequest) {
         Room room = Room.builder()
-                .room_id(generateRoomId())
-                .room_name(roomRequest.room_name())
-                .room_capacity(roomRequest.room_capacity())
-                .room_availability(roomRequest.room_availability())
-                .room_features(roomRequest.room_features())
+                .roomId(generateRoomId())
+                .roomName(roomRequest.roomName())
+                .roomCapacity(roomRequest.roomCapacity())
+                .roomAvailability(roomRequest.roomAvailability())
+                .roomFeatures(roomRequest.roomFeatures())
                 .build();
 
         roomRepository.save(room);
@@ -52,11 +52,11 @@ public class RoomServiceImpl implements RoomService {
 
     private RoomResponse mapRoomToRoomResponse(Room room) {
         return new RoomResponse(
-                room.getRoom_id(),
-                room.getRoom_name(),
-                room.getRoom_capacity(),
-                room.getRoom_availability(),
-                room.getRoom_features()
+                room.getRoomId(),
+                room.getRoomName(),
+                room.getRoomCapacity(),
+                room.getRoomAvailability(),
+                room.getRoomFeatures()
         );
     }
 
@@ -65,10 +65,10 @@ public class RoomServiceImpl implements RoomService {
         Room room = roomRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Room not found"));
 
-        room.setRoom_name(roomRequest.room_name());
-        room.setRoom_capacity(roomRequest.room_capacity());
-        room.setRoom_availability(roomRequest.room_availability());
-        room.setRoom_features(roomRequest.room_features());
+        room.setRoomName(roomRequest.roomName());
+        room.setRoomCapacity(roomRequest.roomCapacity());
+        room.setRoomAvailability(roomRequest.roomAvailability());
+        room.setRoomFeatures(roomRequest.roomFeatures());
 
         Room updatedRoom = roomRepository.save(room);
         return mapRoomToRoomResponse(updatedRoom);

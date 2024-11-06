@@ -47,10 +47,10 @@ class RoomServiceApplicationTests {
     void createRoomTest() {
         String requestBody = """
                 {
-                    "room_name": "Room A",
-                    "room_capacity": "20",
-                    "room_availability": true,
-                    "room_features": "Projector, Whiteboard"
+                    "roomName": "Sweet Room",
+                    "roomCapacity": "4",
+                    "roomAvailability": true,
+                    "roomFeatures": "Projector, Whiteboard"
                 }
                 """;
 
@@ -63,21 +63,21 @@ class RoomServiceApplicationTests {
                 .log().all()
                 .statusCode(201)
                 .contentType("application/json")
-                .body("room_id", Matchers.notNullValue())
-                .body("room_name", Matchers.equalTo("Room A"))
-                .body("room_capacity", Matchers.equalTo("20"))
-                .body("room_availability", Matchers.equalTo(true))
-                .body("room_features", Matchers.equalTo("Projector, Whiteboard"));
+                .body("roomId", Matchers.notNullValue())
+                .body("roomName", Matchers.equalTo("Sweet Room"))
+                .body("roomCapacity", Matchers.equalTo("4"))
+                .body("roomAvailability", Matchers.equalTo(true))
+                .body("roomFeatures", Matchers.equalTo("Projector, Whiteboard"));
     }
 
     @Test
     void getAllRoomsTest() {
         String requestBody = """
                 {
-                    "room_name": "Room B",
-                    "room_capacity": "30",
-                    "room_availability": false,
-                    "room_features": "Whiteboard"
+                    "roomName": "Queen Size",
+                    "roomCapacity": "3",
+                    "roomAvailability": false,
+                    "roomFeatures": "Whiteboard"
                 }
                 """;
 
@@ -89,11 +89,11 @@ class RoomServiceApplicationTests {
                 .then()
                 .statusCode(201)
                 .contentType("application/json")
-                .body("room_id", Matchers.notNullValue())
-                .body("room_name", Matchers.equalTo("Room B"))
-                .body("room_capacity", Matchers.equalTo("30"))
-                .body("room_availability", Matchers.equalTo(false))
-                .body("room_features", Matchers.equalTo("Whiteboard"));
+                .body("roomId", Matchers.notNullValue())
+                .body("roomName", Matchers.equalTo("Queen Size"))
+                .body("roomCapacity", Matchers.equalTo("3"))
+                .body("roomAvailability", Matchers.equalTo(false))
+                .body("roomFeatures", Matchers.equalTo("Whiteboard"));
 
         RestAssured.given()
                 .when()
@@ -102,9 +102,9 @@ class RoomServiceApplicationTests {
                 .log().all()
                 .statusCode(200)
                 .body("size()", Matchers.greaterThan(0))
-                .body("[0].room_name", Matchers.notNullValue())
-                .body("[0].room_capacity", Matchers.equalTo("30"))
-                .body("[0].room_availability", Matchers.equalTo(false))
-                .body("[0].room_features", Matchers.equalTo("Whiteboard"));
+                .body("[0].roomName", Matchers.notNullValue())
+                .body("[0].roomCapacity", Matchers.equalTo("3"))
+                .body("[0].roomAvailability", Matchers.equalTo(false))
+                .body("[0].roomFeatures", Matchers.equalTo("Whiteboard"));
     }
 }

@@ -14,9 +14,9 @@ import lombok.*;
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long room_id;
-    private String room_name;
-    private String room_capacity;
-    private Boolean room_availability;
-    private String room_features;
+    private Long roomId;
+    private String roomName;
+    private String roomCapacity;
+    private Boolean roomAvailability;
+    private String roomFeatures;
 }

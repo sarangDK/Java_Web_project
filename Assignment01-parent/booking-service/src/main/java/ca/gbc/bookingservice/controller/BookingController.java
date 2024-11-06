@@ -28,7 +28,7 @@ public class BookingController {
         BookingResponse createdBooking = bookingService.createBooking(bookingRequest);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Location", "/api/v1/booking/" + createdBooking.booking_id());
+        headers.add("Location", "/api/v1/booking/" + createdBooking.bookingId());
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -48,9 +48,9 @@ public class BookingController {
     }
 
     // Get booking by ID
-    @GetMapping("/{booking_id}")
-    public ResponseEntity<BookingResponse> getBookingById(@PathVariable String booking_id) {
-        BookingResponse bookingResponse = bookingService.getBookingById(booking_id);
+    @GetMapping("/{bookingId}")
+    public ResponseEntity<BookingResponse> getBookingById(@PathVariable String bookingId) {
+        BookingResponse bookingResponse = bookingService.getBookingById(bookingId);
         if (bookingResponse == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(null);
@@ -64,9 +64,9 @@ public class BookingController {
 
 
     // Update a booking
-    @PutMapping("/{booking_id}")
-    public ResponseEntity<String> updateBooking(@PathVariable String booking_id, @RequestBody BookingRequest bookingRequest) {
-        String updatedBookingId = bookingService.updateBooking(booking_id, bookingRequest);
+    @PutMapping("/{bookingId}")
+    public ResponseEntity<String> updateBooking(@PathVariable String bookingId, @RequestBody BookingRequest bookingRequest) {
+        String updatedBookingId = bookingService.updateBooking(bookingId, bookingRequest);
 
         if (updatedBookingId == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -83,9 +83,9 @@ public class BookingController {
     }
 
     // Delete a booking
-    @DeleteMapping("/{booking_id}")
-    public ResponseEntity<String> deleteBooking(@PathVariable String booking_id) {
-        bookingService.deleteBooking(booking_id);
+    @DeleteMapping("/{bookingId}")
+    public ResponseEntity<String> deleteBooking(@PathVariable String bookingId) {
+        bookingService.deleteBooking(bookingId);
 
         return ResponseEntity
                 .status(HttpStatus.NO_CONTENT)
