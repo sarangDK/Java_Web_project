@@ -5,6 +5,6 @@ public record EventRequest(
         String roomId,
         String eventName,
         String eventType,
-        int expectedAttendees
+        Integer expectedAttendees
 ) {
 }

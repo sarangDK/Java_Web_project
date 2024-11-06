@@ -18,5 +18,5 @@ public class Event {
     private Long roomId;
     private String eventName;
     private String eventType;
-    private int expectedAttendees;
+    private Integer expectedAttendees;
 }
