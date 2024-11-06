@@ -59,7 +59,7 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=password
     volumes:
-      - ./data/mongo/products:/data/db
+      - ./data/mongo/bookings:/data/db
       - ./local-docker-file/mongo/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     networks:
       - spring

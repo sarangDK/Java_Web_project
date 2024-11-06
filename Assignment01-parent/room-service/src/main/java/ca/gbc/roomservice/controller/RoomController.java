@@ -42,12 +42,18 @@ public class RoomController {
     public RoomResponse updateRoom(@PathVariable Long id, @RequestBody RoomRequest roomRequest) {
         return roomService.updateRoom(id, roomRequest);
     }
-
     // Delete room operation
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteRoom(@PathVariable Long id) {
         roomService.deleteRoom(id);
     }
+
+    // Check if a room is available
+    @GetMapping("/{id}/availability")
+    public boolean isRoomAvailable(@PathVariable Long id) {
+        return roomService.isRoomAvailable(id);
+    }
+
 
 }

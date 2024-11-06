@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 @Slf4j
@@ -69,6 +69,7 @@ public class BookingServiceImpl implements BookingService {
         }
     }
 
+
     private BookingResponse mapBookingToBookingResponse(Booking booking) {
         return new BookingResponse(
                 booking.getBookingId(),
@@ -80,10 +81,10 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public String updateBooking(String booking_id, BookingRequest bookingRequest) {
+    public String updateBooking(String bookingId, BookingRequest bookingRequest) {
         log.debug("Revise booking for user: {}", bookingRequest.userId());
         Query query = new Query();
-        query.addCriteria(Criteria.where("booking_id").is(booking_id));
+        query.addCriteria(Criteria.where("bookingId").is(bookingId));
         Booking booking = mongoTemplate.findOne(query, Booking.class);
 
         if (booking != null) {
@@ -96,7 +97,7 @@ public class BookingServiceImpl implements BookingService {
             log.info("Booking {} is updated successfully", booking.getBookingId());
             return booking.getBookingId();
         } else {
-            log.error("Booking {} is not found", booking_id);
+            log.error("Booking {} is not found", bookingId);
             return null;
         }
     }
@@ -105,7 +106,7 @@ public class BookingServiceImpl implements BookingService {
     public void deleteBooking(String bookingId) {
         log.debug("Deleting booking: {}", bookingId);
         Query query = new Query();
-        query.addCriteria(Criteria.where("booking_id").is(bookingId));
+        query.addCriteria(Criteria.where("bookingId").is(bookingId));
         Booking booking = mongoTemplate.findOne(query, Booking.class);
 
         if (booking != null) {

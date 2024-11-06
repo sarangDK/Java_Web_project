@@ -22,7 +22,7 @@ public class RoomServiceImpl implements RoomService {
 
 
     @Override
-    public boolean isRoomAvailable(Long roomId, Boolean roomAvailability) {
+    public boolean isRoomAvailable(Long roomId) {
         Room room = roomRepository.findById(roomId)
                 .orElseThrow(() -> new RuntimeException("Room not found"));
         return room.getRoomAvailability();
