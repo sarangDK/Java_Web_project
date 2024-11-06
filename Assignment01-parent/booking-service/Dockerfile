@@ -27,7 +27,7 @@ ENV MONGO_DB_USERNAME=admin \
     MONGO_DB_PWD=password
 
 
-EXPOSE 8094
+EXPOSE 8095
 
 #ENTYPOINT means that the container will run the command that is specified
 # in the ENTRYPOINT when the container starts.
