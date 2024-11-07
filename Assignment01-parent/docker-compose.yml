@@ -16,6 +16,21 @@ services:
     networks:
       - spring
 
+  event-service:
+    image: event-service
+    ports:
+      - "8041:8041"
+    build:
+      context: ./event-service  # The directory where the Dockerfile resides
+      dockerfile: ../event-service/Dockerfile    # Specify the Dockerfile for use to build the image
+    container_name: event-service
+    environment:
+      SPRING_PROFILE-_ACTIVE: docker
+    depends_on:
+      - mongodb
+    networks:
+      - spring
+
   room-service:
     build:
       context: ./room-service
