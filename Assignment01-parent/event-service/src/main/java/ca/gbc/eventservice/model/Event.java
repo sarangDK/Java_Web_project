@@ -15,7 +15,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Event {
     @Id
     private String eventId;
-    private String bookingId;
+    private String userId;
     private String eventName;
     private String eventType;
     private Integer expectedAttendees;

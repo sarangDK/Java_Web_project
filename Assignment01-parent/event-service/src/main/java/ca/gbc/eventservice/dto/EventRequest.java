@@ -2,7 +2,7 @@ package ca.gbc.eventservice.dto;
 
 public record EventRequest(
         String eventId,
-        String bookingId,
+        String userId,
         String eventName,
         String eventType,
         Integer expectedAttendees

@@ -1,5 +1,6 @@
 package ca.gbc.eventservice.service;
 
+import ca.gbc.eventservice.client.UserClient;
 import ca.gbc.eventservice.dto.EventRequest;
 import ca.gbc.eventservice.dto.EventResponse;
 import ca.gbc.eventservice.model.Event;
@@ -19,12 +20,19 @@ import java.util.List;
 public class EventServiceImpl implements EventService {
     private final EventRepository eventRepository;
     private final MongoTemplate mongoTemplate;
+    private final UserClient userClient;
 
     @Override
     public EventResponse createEvent(EventRequest eventRequest) {
-        log.debug("Create event for room: {}", eventRequest.bookingId());
+
+        // get userId
+
+
+
+
+        log.debug("Create event for room: {}", eventRequest.userId());
         Event event = Event.builder()
-                .bookingId(eventRequest.bookingId())
+                .userId(eventRequest.userId())
                 .eventName(eventRequest.eventName())
                 .eventType(eventRequest.eventType())
                 .expectedAttendees(eventRequest.expectedAttendees())
@@ -35,7 +43,7 @@ public class EventServiceImpl implements EventService {
 
         return new EventResponse(
                 event.getEventId(),
-                event.getBookingId(),
+                event.getUserId(),
                 event.getEventName(),
                 event.getEventType(),
                 event.getExpectedAttendees()
@@ -51,7 +59,7 @@ public class EventServiceImpl implements EventService {
     private EventResponse mapEventToEventResponse(Event event) {
         return new EventResponse(
                 event.getEventId(),
-                event.getBookingId(),
+                event.getUserId(),
                 event.getEventName(),
                 event.getEventType(),
                 event.getExpectedAttendees());
@@ -75,13 +83,13 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public String updateEvent(String eventId, EventRequest eventRequest) {
-        log.debug("Revise event for room: {}", eventRequest.bookingId());
+        log.debug("Revise event for room: {}", eventRequest.userId());
         Query query = new Query();
         query.addCriteria(Criteria.where("eventId").is(eventId));
         Event event = mongoTemplate.findOne(query, Event.class);
 
         if (event != null) {
-            event.setBookingId(eventRequest.bookingId());
+            event.setUserId(eventRequest.userId());
             event.setEventName(eventRequest.eventName());
             event.setEventType(eventRequest.eventType());
             event.setExpectedAttendees(eventRequest.expectedAttendees());
