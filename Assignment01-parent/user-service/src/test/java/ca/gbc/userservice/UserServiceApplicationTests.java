@@ -41,7 +41,7 @@ class UserServiceApplicationTests {
                 .contentType("application/json")
                 .body(requestBody)
                 .when()
-                .post("/api/type")
+                .post("/api/v1/type")
                 .then()
                 .statusCode(201)
                 .body("type_id", Matchers.notNullValue())
@@ -60,7 +60,7 @@ class UserServiceApplicationTests {
                 .contentType("application/json")
                 .body(requestBody)
                 .when()
-                .post("/api/type")
+                .post("/api/v1/type")
                 .then()
                 .statusCode(201)
                 .body("type_id", Matchers.notNullValue())
@@ -69,13 +69,15 @@ class UserServiceApplicationTests {
         RestAssured.given()
                 .contentType("application/json")
                 .when()
-                .get("/api/type")
+                .get("/api/v1/type")
                 .then()
                 .log().all()
                 .statusCode(200)
                 .body("size()", Matchers.greaterThan(0))
                 .body("[0].type_name", Matchers.equalTo("student"));
     }
+
+
 
     @Test
     void updateTypeTest() {
@@ -89,7 +91,7 @@ class UserServiceApplicationTests {
                 .contentType("application/json")
                 .body(requestBody)
                 .when()
-                .post("/api/type")
+                .post("/api/v1/type")
                 .then()
                 .statusCode(201)
                 .body("type_id", Matchers.notNullValue())
@@ -109,7 +111,7 @@ class UserServiceApplicationTests {
                 .contentType("application/json")
                 .body(requestBody)
                 .when()
-                .put("/api/type/"+type_id)
+                .put("/api/v1/type/"+type_id)
                 .then()
                 .statusCode(204)
                 .header("Location", "/api/type/"+type_id);
@@ -127,7 +129,7 @@ class UserServiceApplicationTests {
                 .contentType("application/json")
                 .body(requestBody)
                 .when()
-                .post("/api/type")
+                .post("/api/v1/type")
                 .then()
                 .statusCode(201)
                 .body("type_id", Matchers.notNullValue())
@@ -141,7 +143,7 @@ class UserServiceApplicationTests {
         RestAssured.given()
                 .when()
                 .pathParam("type_id", type_id)
-                .delete("/api/type/{type_id}")
+                .delete("/api/v1/type/{type_id}")
                 .then()
                 .log().all()
                 .statusCode(204);
@@ -162,7 +164,7 @@ class UserServiceApplicationTests {
                 .contentType("application/json")
                 .body(requestBody)
                 .when()
-                .post("/api/type")
+                .post("/api/v1/type")
                 .then()
                 .statusCode(201)
                 .body("type_id", Matchers.notNullValue())
@@ -184,7 +186,7 @@ class UserServiceApplicationTests {
                 .contentType("application/json")
                 .body(requestBody)
                 .when()
-                .post("/api/user")
+                .post("/api/v1/user")
                 .then()
                 .statusCode(201)  // Expect status code 201 (created)
                 .body("user_id", Matchers.notNullValue())
@@ -206,7 +208,7 @@ class UserServiceApplicationTests {
                 .contentType("application/json")
                 .body(requestBody)
                 .when()
-                .post("/api/type")
+                .post("/api/v1/type")
                 .then()
                 .statusCode(201)
                 .body("type_id", Matchers.notNullValue())
@@ -228,7 +230,7 @@ class UserServiceApplicationTests {
                 .contentType("application/json")
                 .body(requestBody)
                 .when()
-                .post("/api/user")
+                .post("/api/v1/user")
                 .then()
                 .statusCode(201)
                 .body("user_id", Matchers.notNullValue())
@@ -240,7 +242,7 @@ class UserServiceApplicationTests {
         RestAssured.given()
                 .contentType("application/json")
                 .when()
-                .get("/api/user")
+                .get("/api/v1/user")
                 .then()
                 .statusCode(200)
                 .body("size()", Matchers.greaterThan(0))
@@ -262,7 +264,7 @@ class UserServiceApplicationTests {
                 .contentType("application/json")
                 .body(requestBody)
                 .when()
-                .post("/api/type")
+                .post("/api/v1/type")
                 .then()
                 .statusCode(201)
                 .body("type_id", Matchers.notNullValue())
@@ -283,7 +285,7 @@ class UserServiceApplicationTests {
                 .contentType("application/json")
                 .body(requestBody)
                 .when()
-                .post("/api/user")
+                .post("/api/v1/user")
                 .then()
                 .statusCode(201)
                 .body("user_id", Matchers.notNullValue())
@@ -297,7 +299,7 @@ class UserServiceApplicationTests {
         RestAssured.given()
                 .when()
                 .contentType("application/json")
-                .get("/api/user/"+user_id)
+                .get("/api/v1/user/"+user_id)
                 .then()
                 .statusCode(200)
                 .body("user_name", Matchers.equalTo("John Doe"))
@@ -305,7 +307,59 @@ class UserServiceApplicationTests {
                 .body("type.type_name", Matchers.equalTo("student"))
                 .body("type.type_id", Matchers.equalTo(type_id));
     }
+    @Test
+    void isStaffTest() {
+        String requestBody = """
+                {
+                    "type_name": "student"
+                }
+                """;
 
+        Integer type_id = RestAssured.given()
+                .contentType("application/json")
+                .body(requestBody)
+                .when()
+                .post("/api/v1/type")
+                .then()
+                .statusCode(201)
+                .body("type_id", Matchers.notNullValue())
+                .body("type_name", Matchers.equalTo("student"))
+                .extract()
+                .path("type_id");
+
+
+        requestBody = """
+                {
+                  "user_name" : "John Doe",
+                  "user_email": "john.doe@example.com",
+                  "type_id":""" + type_id + """
+                }
+                """;
+
+        Integer user_id = RestAssured.given()
+                .contentType("application/json")
+                .body(requestBody)
+                .when()
+                .post("/api/v1/user")
+                .then()
+                .statusCode(201)
+                .body("user_id", Matchers.notNullValue())
+                .body("user_name", Matchers.equalTo("John Doe"))
+                .body("user_email", Matchers.equalTo("john.doe@example.com"))
+                .body("type.type_name", Matchers.equalTo("student"))
+                .body("type.type_id", Matchers.equalTo(type_id))
+                .extract()
+                .path("user_id");
+
+        RestAssured.given()
+                .when()
+                .contentType("application/json")
+                .get("/api/v1/user/isStaff"+user_id)
+                .then()
+                .statusCode(200)
+                .body("type.type_name", Matchers.equalTo("student"))
+                .body("type.type_id", Matchers.equalTo(type_id));
+    }
     @Test
     void updateUserTest(){
         String requestBody = """
@@ -319,7 +373,7 @@ class UserServiceApplicationTests {
                 .contentType("application/json")
                 .body(requestBody)
                 .when()
-                .post("/api/type")
+                .post("/api/v1/type")
                 .then()
                 .statusCode(201)
                 .body("type_id", Matchers.notNullValue())
@@ -339,7 +393,7 @@ class UserServiceApplicationTests {
                 .contentType("application/json")
                 .body(requestBody)
                 .when()
-                .post("/api/user")
+                .post("/api/v1/user")
                 .then()
                 .statusCode(201)
                 .body("user_id", Matchers.notNullValue())
@@ -362,7 +416,7 @@ class UserServiceApplicationTests {
                 .contentType("application/json")
                 .body(requestBody)
                 .when()
-                .put("/api/user/"+user_id)
+                .put("/api/v1/user/"+user_id)
                 .then()
                 .statusCode(204)
                 .header("Location", "/api/user/"+user_id);
@@ -381,7 +435,7 @@ class UserServiceApplicationTests {
                 .contentType("application/json")
                 .body(requestBody)
                 .when()
-                .post("/api/type")
+                .post("/api/v1/type")
                 .then()
                 .statusCode(201)
                 .body("type_id", Matchers.notNullValue())
@@ -401,7 +455,7 @@ class UserServiceApplicationTests {
                 .contentType("application/json")
                 .body(requestBody)
                 .when()
-                .post("/api/user")
+                .post("/api/v1/user")
                 .then()
                 .statusCode(201)
                 .body("user_id", Matchers.notNullValue())
@@ -415,7 +469,7 @@ class UserServiceApplicationTests {
         RestAssured.given()
                 .when()
                 .pathParam("user_id", user_id)
-                .delete("/api/user/{user_id}")
+                .delete("/api/v1/user/{user_id}")
                 .then()
                 .statusCode(204);
     }

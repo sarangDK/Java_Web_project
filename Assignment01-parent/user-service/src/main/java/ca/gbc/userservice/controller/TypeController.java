@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/type")
+@RequestMapping("/api/v1/type")
 @RequiredArgsConstructor
 public class TypeController {
 
