@@ -1,0 +1,52 @@
+version: '3.9'
+
+services:
+
+  event-service:
+    image: event-service
+    ports:
+      - "8041:8041"
+    build:
+      context: ./event-service  # The directory where the Dockerfile resides
+      dockerfile: ../event-service/Dockerfile    # Specify the Dockerfile for use to build the image
+    container_name: event-service
+    environment:
+      SPRING_PROFILE-_ACTIVE: docker
+    depends_on:
+      - mongodb
+    networks:
+      - spring
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - ./data/mongo/events:/data/db
+      - ./init/mongo/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - spring
+
+  mongo-express:
+    image: mongo-express
+    ports:
+      - "8043:8043"
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+    container_name: mongo-express-event
+    depends_on:
+      - mongodb
+    networks:
+      - spring
+
+
+networks:
+  spring:
+    driver: bridge

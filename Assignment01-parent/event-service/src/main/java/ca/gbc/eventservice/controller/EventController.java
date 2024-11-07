@@ -63,7 +63,7 @@ public class EventController {
                 .body("Event updated successfully");
     }
 
-    @DeleteMapping("/{eventId")
+    @DeleteMapping("/{eventId}")
     public ResponseEntity<String> deleteEvent(@PathVariable String eventId) {
         eventService.deleteEvent(eventId);
 
