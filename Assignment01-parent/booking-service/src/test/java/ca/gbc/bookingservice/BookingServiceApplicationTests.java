@@ -67,6 +67,7 @@ class BookingServiceApplicationTests {
 
         String requestBody = """
             {
+                "bookingNumber": "BOOKING-1",
                 "userId": "1",
                 "roomId": 1,
                 "checkIn": "2021-10-10T10:00:00.000+00:00",
@@ -83,6 +84,7 @@ class BookingServiceApplicationTests {
                 .then()
                 .log().all()
                 .statusCode(201)
+                .body("bookingNumber", Matchers.equalTo("BOOKING-1"))
                 .body("userId", Matchers.notNullValue())
                 .body("roomId", Matchers.equalTo(1))
                 .body("checkIn", Matchers.equalTo("2021-10-10T10:00:00.000+00:00"))
@@ -95,6 +97,8 @@ class BookingServiceApplicationTests {
 
         String requestBody = """
             {
+                
+                "bookingNumber": "BOOKING-1",
                 "userId": "1",
                 "roomId": 1,
                 "checkIn": "2021-10-10T10:00:00",
@@ -111,6 +115,7 @@ class BookingServiceApplicationTests {
                 .then()
                 .log().all()
                 .statusCode(201)
+                .body("bookingNumber", Matchers.equalTo("BOOKING-1"))
                 .body("userId", Matchers.notNullValue())
                 .body("roomId", Matchers.equalTo(1))
                 .body("checkIn", Matchers.equalTo("2021-10-10T10:00:00.000+00:00"))
@@ -124,6 +129,7 @@ class BookingServiceApplicationTests {
                 .log().all()
                 .statusCode(200)
                 .body("size()", Matchers.greaterThan(0))
+                .body("[0].bookingNumber", Matchers.equalTo("BOOKING-1"))
                 .body("[0].userId", Matchers.notNullValue())
                 .body("[0].roomId", Matchers.equalTo(1))
                 .body("[0].checkIn", Matchers.equalTo("2021-10-10T10:00:00.000+00:00"))
@@ -136,16 +142,17 @@ class BookingServiceApplicationTests {
     void shouldUserBook() {
         String requestBody = """
             {
+                "bookingNumber": "BOOKING-1",
                 "userId": "1",
                 "roomId": 1,
                 "checkIn": "2021-10-10T10:00:00",
                 "checkOut": "2021-10-10T11:00:00",
                 "purpose": "Meeting",
-                "availability": true
+                "availability": false
             }
             """;
 
-        roomClientStub.stubRoomCall(1L, true);
+        roomClientStub.stubRoomCall(1L, false);
 
         var response = RestAssured.given()
                 .contentType("application/json")
@@ -158,11 +165,16 @@ class BookingServiceApplicationTests {
                 .extract()
                 .body().asString();
 
+        assertThat(from(response).getString("bookingNumber"), equalTo("BOOKING-1"));
         assertThat(from(response).getString("userId"), equalTo("1"));
         assertThat(from(response).getInt("roomId"), equalTo(1));
         assertThat(from(response).getString("checkIn"), equalTo("2021-10-10T10:00:00.000+00:00"));
         assertThat(from(response).getString("checkOut"), equalTo("2021-10-10T11:00:00.000+00:00"));
         assertThat(from(response).getString("purpose"), equalTo("Meeting"));
+
     }
+
+
+
 
 }

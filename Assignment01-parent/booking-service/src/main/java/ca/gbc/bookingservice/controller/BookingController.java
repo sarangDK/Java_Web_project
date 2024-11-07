@@ -36,6 +36,10 @@ public class BookingController {
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(createdBooking);
 
+
+
+
+
     }
     // Get all Bookings
     @GetMapping
@@ -49,7 +53,7 @@ public class BookingController {
 
     // Get booking by ID
     @GetMapping("/{bookingId}")
-    public ResponseEntity<BookingResponse> getBookingById(@PathVariable String bookingId) {
+    public ResponseEntity<BookingResponse> getBookingById(@PathVariable Long bookingId) {
         BookingResponse bookingResponse = bookingService.getBookingById(bookingId);
         if (bookingResponse == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -65,12 +69,12 @@ public class BookingController {
 
     // Update a booking
     @PutMapping("/{bookingId}")
-    public ResponseEntity<String> updateBooking(@PathVariable String bookingId, @RequestBody BookingRequest bookingRequest) {
+    public ResponseEntity<String> updateBooking(@PathVariable Long bookingId, @RequestBody BookingRequest bookingRequest) {
         String updatedBookingId = bookingService.updateBooking(bookingId, bookingRequest);
 
         if (updatedBookingId == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Booking not found");
+                    .body("Booking Number: " + bookingId + " not found");
         }
 
         HttpHeaders headers = new HttpHeaders();
@@ -79,17 +83,17 @@ public class BookingController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .headers(headers)
-                .body("Booking updated successfully");
+                .body("Booking Number: " + updatedBookingId + " updated successfully");
     }
 
     // Delete a booking
     @DeleteMapping("/{bookingId}")
-    public ResponseEntity<String> deleteBooking(@PathVariable String bookingId) {
+    public ResponseEntity<String> deleteBooking(@PathVariable Long bookingId) {
         bookingService.deleteBooking(bookingId);
 
         return ResponseEntity
                 .status(HttpStatus.NO_CONTENT)
-                .body("Booking deleted successfully");
+                .body("Booking Number: " + bookingId + " deleted successfully");
     }
 
 }

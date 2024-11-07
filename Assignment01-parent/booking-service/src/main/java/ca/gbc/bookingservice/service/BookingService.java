@@ -10,9 +10,9 @@ import java.util.List;
 public interface BookingService {
     BookingResponse createBooking(BookingRequest bookingRequest);
     List<BookingResponse> getAllBookings();
-    String updateBooking(String bookingId, BookingRequest bookingRequest);
-    void deleteBooking(String bookingId);
-    BookingResponse getBookingById(String bookingId);
+    String updateBooking(Long bookingId, BookingRequest bookingRequest);
+    void deleteBooking(Long bookingId);
+    BookingResponse getBookingById(Long bookingId);
 
 
 

@@ -24,6 +24,10 @@ public class RoomController {
     }
 
 
+    @GetMapping("/availableRooms")
+    public List<RoomResponse> getAvailableRooms() {
+        return roomService.getAvailableRooms();
+    }
     // Get all rooms
     @GetMapping
     public List<RoomResponse> getAllRooms() {
@@ -42,6 +46,13 @@ public class RoomController {
     public RoomResponse updateRoom(@PathVariable Long id, @RequestBody RoomRequest roomRequest) {
         return roomService.updateRoom(id, roomRequest);
     }
+
+    @PutMapping("/availability/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateRoomAvailability(@PathVariable Long id, @RequestParam boolean availability) {
+        roomService.updateRoomAvailability(id, availability);
+    }
+
     // Delete room operation
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -50,10 +61,12 @@ public class RoomController {
     }
 
     // Check if a room is available
-    @GetMapping("/{id}/availability")
-    public boolean isRoomAvailable(@PathVariable Long id) {
+    @GetMapping("/availability/{id}")
+    public boolean isRoomAvailable(@RequestParam Long id) {
         return roomService.isRoomAvailable(id);
     }
+
+
 
 
 }
