@@ -25,29 +25,31 @@ public class EventServiceImpl implements EventService {
     @Override
     public EventResponse createEvent(EventRequest eventRequest) {
 
-        // get userId
+        // get check user role
+        var isStaff = userClient.isStaff(eventRequest.userId());
 
+        if (isStaff.equals("Staff")) {
+            log.debug("Create event for room: {}", eventRequest.userId());
+            Event event = Event.builder()
+                    .userId(eventRequest.userId())
+                    .eventName(eventRequest.eventName())
+                    .eventType(eventRequest.eventType())
+                    .expectedAttendees(eventRequest.expectedAttendees())
+                    .build();
 
+            eventRepository.save(event);
+            log.info("Event {} is saved successfully", event.getEventId());
 
-
-        log.debug("Create event for room: {}", eventRequest.userId());
-        Event event = Event.builder()
-                .userId(eventRequest.userId())
-                .eventName(eventRequest.eventName())
-                .eventType(eventRequest.eventType())
-                .expectedAttendees(eventRequest.expectedAttendees())
-                .build();
-
-        eventRepository.save(event);
-        log.info("Event {} is saved successfully", event.getEventId());
-
-        return new EventResponse(
-                event.getEventId(),
-                event.getUserId(),
-                event.getEventName(),
-                event.getEventType(),
-                event.getExpectedAttendees()
-        );
+            return new EventResponse(
+                    event.getEventId(),
+                    event.getUserId(),
+                    event.getEventName(),
+                    event.getEventType(),
+                    event.getExpectedAttendees()
+            );
+        } else {
+            throw new RuntimeException("User with id " + eventRequest.userId() + " is not staff, can't create an event");
+        }
     }
 
     @Override
