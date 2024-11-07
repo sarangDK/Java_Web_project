@@ -62,7 +62,7 @@ public class RoomController {
 
     // Check if a room is available
     @GetMapping("/availability/{id}")
-    public boolean isRoomAvailable(@RequestParam Long id) {
+    public boolean isRoomAvailable(@PathVariable Long id) {
         return roomService.isRoomAvailable(id);
     }
 

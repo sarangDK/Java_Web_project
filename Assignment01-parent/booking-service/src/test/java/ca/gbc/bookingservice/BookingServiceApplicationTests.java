@@ -97,7 +97,6 @@ class BookingServiceApplicationTests {
 
         String requestBody = """
             {
-                
                 "bookingNumber": "BOOKING-1",
                 "userId": "1",
                 "roomId": 1,

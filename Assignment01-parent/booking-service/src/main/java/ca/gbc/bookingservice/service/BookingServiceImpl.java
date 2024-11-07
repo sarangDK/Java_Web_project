@@ -28,10 +28,13 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public BookingResponse createBooking(BookingRequest bookingRequest) {
+        try {
+            var isRoomAvailable = roomServiceClient.isRoomAvailable(bookingRequest.roomId());
 
-        var isRoomAvailable = roomServiceClient.isRoomAvailable(bookingRequest.roomId());
+            if (!isRoomAvailable) {
+                throw new RuntimeException("Room with roomId: " + bookingRequest.roomId() + " is not available");
+            }
 
-        if (isRoomAvailable) {
             Booking booking = Booking.builder()
                     .bookingNumber(UUID.randomUUID().toString())
                     .userId(bookingRequest.userId())
@@ -42,6 +45,7 @@ public class BookingServiceImpl implements BookingService {
                     .build();
 
             bookingRepository.save(booking);
+
             roomServiceClient.updateRoomAvailability(bookingRequest.roomId(), false);
 
             return new BookingResponse(
@@ -53,11 +57,13 @@ public class BookingServiceImpl implements BookingService {
                     booking.getCheckOut(),
                     booking.getPurpose()
             );
-
-        } else {
-            throw new RuntimeException("Room with roomId : " + bookingRequest.roomId() + " is not available");
+        } catch (Exception e) {
+            log.error("Error occurred while creating booking: {}", e.getMessage(), e);
+            throw new RuntimeException("Failed to create booking: " + e.getMessage());
         }
     }
+
+
 
     @Override
     public List<BookingResponse> getAllBookings() {
@@ -67,7 +73,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public BookingResponse getBookingById(Long bookingId) {
+    public BookingResponse getBookingById(String bookingId) {
         log.debug("Retrieving booking by id: {}", bookingId);
         Query query = new Query();
         query.addCriteria(Criteria.where("bookingId").is(bookingId));
@@ -95,7 +101,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public String updateBooking(Long bookingId, BookingRequest bookingRequest) {
+    public String updateBooking(String bookingId, BookingRequest bookingRequest) {
         log.debug("Revise booking for user: {}", bookingRequest.userId());
         Query query = new Query();
         query.addCriteria(Criteria.where("bookingId").is(bookingId));
@@ -118,7 +124,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public void deleteBooking(Long bookingId) {
+    public void deleteBooking(String bookingId) {
         log.debug("Deleting booking: {}", bookingId);
         Query query = new Query();
         query.addCriteria(Criteria.where("bookingId").is(bookingId));

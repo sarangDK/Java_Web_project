@@ -16,7 +16,7 @@ import java.util.Date;
 @Builder
 public class Booking {
     @Id
-    private Long bookingId;
+    private String bookingId;
 
     private String bookingNumber;
     private Long userId;
