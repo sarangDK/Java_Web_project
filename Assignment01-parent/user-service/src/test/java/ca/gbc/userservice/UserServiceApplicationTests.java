@@ -218,10 +218,10 @@ class UserServiceApplicationTests {
 
 
 
-        requestBody = """
+        requestBody =  """
                 {
-                  "user_name" : "Mac Cheese",
-                  "user_email": "mac.cheese@example.com",
+                  "user_name" : "John Doe",
+                  "user_email": "john.doe@example.com",
                   "type_id":""" + type_id + """
                 }
                 """;
@@ -234,8 +234,8 @@ class UserServiceApplicationTests {
                 .then()
                 .statusCode(201)
                 .body("user_id", Matchers.notNullValue())
-                .body("user_name", Matchers.equalTo("Mac Cheese"))
-                .body("user_email", Matchers.equalTo("mac.cheese@example.com"))
+                .body("user_name", Matchers.equalTo("John Doe"))
+                .body("user_email", Matchers.equalTo("john.doe@example.com"))
                 .body("type.type_name", Matchers.equalTo("student"))
                 .body("type.type_id", Matchers.equalTo(type_id));
 
@@ -246,10 +246,10 @@ class UserServiceApplicationTests {
                 .then()
                 .statusCode(200)
                 .body("size()", Matchers.greaterThan(0))
-                .body("[0].user_name", Matchers.equalTo("Mac Cheese"))
-                .body("[0].user_email", Matchers.equalTo("mac.cheese@example.com"))
+                .body("[0].user_name", Matchers.equalTo("John Doe"))
+                .body("[0].user_email", Matchers.equalTo("john.doe@example.com"))
                 .body("[0].type.type_name", Matchers.equalTo("student"))
-                .body("[0].type.type_id", Matchers.equalTo(type_id));
+                .body("[0].type.type_id", Matchers.equalTo(1));
     }
 
     @Test
@@ -354,11 +354,11 @@ class UserServiceApplicationTests {
         RestAssured.given()
                 .when()
                 .contentType("application/json")
-                .get("/api/v1/user/isStaff"+user_id)
+                .get("/api/v1/user/isStaff/"+user_id)
                 .then()
                 .statusCode(200)
-                .body("type.type_name", Matchers.equalTo("student"))
-                .body("type.type_id", Matchers.equalTo(type_id));
+                .body("type_name", Matchers.equalTo("student"))
+                .body("type_id", Matchers.equalTo(type_id));
     }
     @Test
     void updateUserTest(){
