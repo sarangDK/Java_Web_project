@@ -36,6 +36,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-testcontainers")
     testImplementation("org.testcontainers:junit-jupiter")
     testImplementation("org.testcontainers:mongodb")
+    testImplementation("io.rest-assured:rest-assured:5.4.0")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
