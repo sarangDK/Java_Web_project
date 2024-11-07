@@ -22,9 +22,9 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public EventResponse createEvent(EventRequest eventRequest) {
-        log.debug("Create event for room: {}", eventRequest.roomId());
+        log.debug("Create event for room: {}", eventRequest.bookingId());
         Event event = Event.builder()
-                .roomId(eventRequest.roomId())
+                .bookingId(eventRequest.bookingId())
                 .eventName(eventRequest.eventName())
                 .eventType(eventRequest.eventType())
                 .expectedAttendees(eventRequest.expectedAttendees())
@@ -35,7 +35,7 @@ public class EventServiceImpl implements EventService {
 
         return new EventResponse(
                 event.getEventId(),
-                event.getRoomId(),
+                event.getBookingId(),
                 event.getEventName(),
                 event.getEventType(),
                 event.getExpectedAttendees()
@@ -51,7 +51,7 @@ public class EventServiceImpl implements EventService {
     private EventResponse mapEventToEventResponse(Event event) {
         return new EventResponse(
                 event.getEventId(),
-                event.getRoomId(),
+                event.getBookingId(),
                 event.getEventName(),
                 event.getEventType(),
                 event.getExpectedAttendees());
@@ -75,13 +75,13 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public String updateEvent(String eventId, EventRequest eventRequest) {
-        log.debug("Revise event for room: {}", eventRequest.roomId());
+        log.debug("Revise event for room: {}", eventRequest.bookingId());
         Query query = new Query();
         query.addCriteria(Criteria.where("eventId").is(eventId));
         Event event = mongoTemplate.findOne(query, Event.class);
 
         if (event != null) {
-            event.setRoomId(eventRequest.roomId());
+            event.setBookingId(eventRequest.bookingId());
             event.setEventName(eventRequest.eventName());
             event.setEventType(eventRequest.eventType());
             event.setExpectedAttendees(eventRequest.expectedAttendees());
