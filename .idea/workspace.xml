@@ -4,31 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a7b3c832-3ec2-4841-8e95-e7515112bd5e" name="Changes" comment="nov5 - booking-service not working">
-      <change afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/bookings/journal/WiredTigerLog.0000000010" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/bookings/WiredTiger.turtle" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/bookings/WiredTiger.turtle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/bookings/WiredTiger.wt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/bookings/WiredTiger.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/bookings/collection-0--7551802224308049611.wt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/bookings/collection-0--7551802224308049611.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/bookings/collection-2--141679958520795748.wt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/bookings/collection-2--141679958520795748.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/bookings/collection-4--141679958520795748.wt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/bookings/collection-4--141679958520795748.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/bookings/diagnostic.data/metrics.interim" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/bookings/diagnostic.data/metrics.interim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/bookings/index-1--7551802224308049611.wt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/bookings/index-1--7551802224308049611.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/bookings/index-3--141679958520795748.wt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/bookings/index-3--141679958520795748.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/bookings/index-5--141679958520795748.wt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/bookings/index-5--141679958520795748.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/bookings/index-6--141679958520795748.wt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/bookings/index-6--141679958520795748.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/mongo/bookings/sizeStorer.wt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/mongo/bookings/sizeStorer.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/postgres/room/base/16384/pg_internal.init" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/postgres/room/base/16384/pg_internal.init" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/postgres/room/global/pg_control" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/postgres/room/global/pg_control" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/postgres/room/global/pg_internal.init" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/postgres/room/global/pg_internal.init" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/postgres/room/pg_wal/000000010000000000000001" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/postgres/room/pg_wal/000000010000000000000001" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/postgres/room/postmaster.pid" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/postgres/room/postmaster.pid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/postgres/user/base/16384/pg_internal.init" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/postgres/user/base/16384/pg_internal.init" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/postgres/user/global/pg_control" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/postgres/user/global/pg_control" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/postgres/user/global/pg_internal.init" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/postgres/user/global/pg_internal.init" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/postgres/user/pg_wal/000000010000000000000001" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/postgres/user/pg_wal/000000010000000000000001" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/data/postgres/user/postmaster.pid" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/data/postgres/user/postmaster.pid" afterDir="false" />
-    </list>
+    <list default="true" id="a7b3c832-3ec2-4841-8e95-e7515112bd5e" name="Changes" comment="nov5 - booking-service not working" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -97,37 +73,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;DELOMBOK_PRE_COMMIT&quot;: &quot;false&quot;,
-    &quot;Gradle.BookingServiceApplicationTests.createBookingTests.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.BookingServiceApplicationTests.getAllBookingsTests.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.BookingServiceApplicationTests.shouldUserBook.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build Assignment01-parent.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.RoomServiceApplicationTests.createRoomTest.executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.RoomServiceApplicationTests.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.RoomServiceApplicationTests.getAllRoomsTest.executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.BookingServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.RoomServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Daekyung&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/da980/IdeaProjects/COMP3095-Assignment01/Assignment01-parent/init/mongo/mongo-init.js&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DELOMBOK_PRE_COMMIT": "false",
+    "Gradle.BookingServiceApplicationTests.createBookingTests.executor": "Run",
+    "Gradle.BookingServiceApplicationTests.getAllBookingsTests.executor": "Run",
+    "Gradle.BookingServiceApplicationTests.shouldUserBook.executor": "Run",
+    "Gradle.Build Assignment01-parent.executor": "Run",
+    "Gradle.RoomServiceApplicationTests.createRoomTest.executor": "Debug",
+    "Gradle.RoomServiceApplicationTests.executor": "Run",
+    "Gradle.RoomServiceApplicationTests.getAllRoomsTest.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.BookingServiceApplication.executor": "Run",
+    "Spring Boot.RoomServiceApplication.executor": "Run",
+    "git-widget-placeholder": "Daekyung",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/da980/IdeaProjects/COMP3095-Assignment01/Assignment01-parent/init/mongo/mongo-init.js",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.configurations.included.in.services": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\da980\IdeaProjects\COMP3095-Assignment01\Assignment01-parent\init\mongo\mongo-init.js" />
@@ -368,7 +344,8 @@
       <workItem from="1730858359884" duration="2831000" />
       <workItem from="1730861238457" duration="589000" />
       <workItem from="1730861922817" duration="1710000" />
-      <workItem from="1730864473697" duration="4727000" />
+      <workItem from="1730864473697" duration="5816000" />
+      <workItem from="1730945856955" duration="912000" />
     </task>
     <task id="LOCAL-00001" summary="oct.30">
       <option name="closed" value="true" />
