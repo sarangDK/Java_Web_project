@@ -13,13 +13,13 @@ services:
     environment:
       SPRING_PROFILE-_ACTIVE: docker
     depends_on:
-      - mongodb
+      - event-mongodb
     networks:
       - spring
 
-  mongodb:
+  event-mongodb:
     image: mongo:latest
-    container_name: mongodb
+    container_name: event-service-db
     ports:
       - "27017:27017"
 
@@ -39,10 +39,10 @@ services:
     environment:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
       - ME_CONFIG_MONGODB_ADMINPASSWORD=password
-      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_SERVER=event-mongodb
     container_name: mongo-express-event
     depends_on:
-      - mongodb
+      - event-mongodb
     networks:
       - spring
 
