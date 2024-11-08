@@ -29,7 +29,6 @@ public class EventServiceImpl implements EventService {
         // get check user role
         var isStaff = userClient.isStaff(eventRequest.userId());
         log.info("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
-
         if (isStaff.equals("Staff")) {
             log.info("ccccccccccccccccccccccccccccccccccc");
             log.debug("Create event for room: {}", eventRequest.userId());

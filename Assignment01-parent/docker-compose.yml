@@ -28,6 +28,7 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
       - mongodb-event
+      - user-service
     networks:
       - spring
 
