@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface UserClient {
 
     @RequestMapping(method = RequestMethod.GET, value="/api/v1/user")
-    String isStaff(@RequestParam String userId);
+    String isStaff(@RequestParam Long userId);
 }
