@@ -2,6 +2,8 @@ package ca.gbc.approvalservice.service;
 
 import ca.gbc.approvalservice.dto.ApprovalRequest;
 import ca.gbc.approvalservice.dto.ApprovalResponse;
+import ca.gbc.approvalservice.dto.EventResponse;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -16,5 +18,5 @@ public interface ApprovalService {
 
     void deleteApproval(String approvalId);
 
-    void getEventDetails(String eventId);
+    ResponseEntity<EventResponse> getEventDetails(String eventId);
 }

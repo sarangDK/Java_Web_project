@@ -46,7 +46,7 @@ public class EventController {
     }
 
     @GetMapping("/{eventId}")
-    public ResponseEntity<String> getEventById(@PathVariable String eventId) {
+    public ResponseEntity<EventResponse> getEventById(@PathVariable String eventId) {
         EventResponse eventResponse = eventService.getEventById(eventId);
         if (eventResponse == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -55,7 +55,7 @@ public class EventController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(eventId);
+                .body(eventResponse);
     }
 
     @PutMapping("/{eventId}")

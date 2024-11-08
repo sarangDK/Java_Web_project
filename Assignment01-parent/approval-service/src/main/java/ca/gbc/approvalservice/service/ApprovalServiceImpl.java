@@ -4,6 +4,7 @@ import ca.gbc.approvalservice.client.EventClient;
 import ca.gbc.approvalservice.client.UserClient;
 import ca.gbc.approvalservice.dto.ApprovalRequest;
 import ca.gbc.approvalservice.dto.ApprovalResponse;
+import ca.gbc.approvalservice.dto.EventResponse;
 import ca.gbc.approvalservice.model.Approval;
 import ca.gbc.approvalservice.repository.ApprovalRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -121,8 +123,8 @@ public class ApprovalServiceImpl implements ApprovalService{
     }
 
     @Override
-    public void getEventDetails(String eventId) {
+    public ResponseEntity<EventResponse> getEventDetails(String eventId) {
         log.info("Fetch the Event with ID: {}", eventId);
-        eventClient.getEventById(eventId);
+        return eventClient.getEventById(eventId);
     }
 }

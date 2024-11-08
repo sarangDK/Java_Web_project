@@ -2,6 +2,7 @@ package ca.gbc.approvalservice.controller;
 
 import ca.gbc.approvalservice.dto.ApprovalRequest;
 import ca.gbc.approvalservice.dto.ApprovalResponse;
+import ca.gbc.approvalservice.dto.EventResponse;
 import ca.gbc.approvalservice.service.ApprovalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -71,8 +72,8 @@ public class ApprovalController {
     }
 
 
-    @GetMapping("/eventDetails{eventId}")
-    public void getEventDetails(@PathVariable String eventId) {
-        approvalService.getEventDetails(eventId);
+    @GetMapping("/eventDetails/{eventId}")
+    public ResponseEntity<EventResponse> getEventDetails(@PathVariable String eventId) {
+        return approvalService.getEventDetails(eventId);
     }
 }
