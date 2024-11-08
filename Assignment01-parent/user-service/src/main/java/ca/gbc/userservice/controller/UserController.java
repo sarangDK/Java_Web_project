@@ -47,8 +47,8 @@ public class UserController {
 
     @GetMapping("/isStaff/{userId}")
     @ResponseStatus(HttpStatus.OK)
-    public TypeResponse isStaff(@PathVariable("userId") Long userId){
-        return userService.getType(userId);
+    public String isStaff(@PathVariable("userId") Long userId){
+        return userService.getType(userId).type_name();
     }
 
     @PutMapping("/{userId}")

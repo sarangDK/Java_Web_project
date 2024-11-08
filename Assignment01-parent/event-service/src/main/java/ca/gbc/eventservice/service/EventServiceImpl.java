@@ -25,10 +25,13 @@ public class EventServiceImpl implements EventService {
     @Override
     public EventResponse createEvent(EventRequest eventRequest) {
 
+        log.info("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         // get check user role
         var isStaff = userClient.isStaff(eventRequest.userId());
+        log.info("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
 
         if (isStaff.equals("Staff")) {
+            log.info("ccccccccccccccccccccccccccccccccccc");
             log.debug("Create event for room: {}", eventRequest.userId());
             Event event = Event.builder()
                     .userId(eventRequest.userId())
