@@ -4,7 +4,8 @@ import java.util.Date;
 
 public record BookingResponse(
         String bookingId,
-        String userId,
+        String bookingNumber,
+        Long userId,
         Long roomId,
         Date checkIn,
         Date checkOut,

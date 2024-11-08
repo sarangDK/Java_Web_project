@@ -1,5 +1,6 @@
 package ca.gbc.bookingservice.service;
 
+import ca.gbc.bookingservice.client.RoomServiceClient;
 import ca.gbc.bookingservice.dto.BookingRequest;
 import ca.gbc.bookingservice.dto.BookingResponse;
 import ca.gbc.bookingservice.model.Booking;
@@ -12,7 +13,8 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.UUID;
+
 
 @Service
 @Slf4j
@@ -21,30 +23,47 @@ public class BookingServiceImpl implements BookingService {
 
     private final BookingRepository bookingRepository;
     private final MongoTemplate mongoTemplate;
+    private final RoomServiceClient roomServiceClient;
+
 
     @Override
     public BookingResponse createBooking(BookingRequest bookingRequest) {
+        try {
+            var isRoomAvailable = roomServiceClient.isRoomAvailable(bookingRequest.roomId());
 
-        log.debug("Creating booking for user: {}", bookingRequest.userId());
-        Booking booking = Booking.builder()
-                .userId(bookingRequest.userId())
-                .roomId(bookingRequest.roomId())
-                .checkIn(bookingRequest.checkIn())
-                .checkOut(bookingRequest.checkOut())
-                .purpose(bookingRequest.purpose())
-                .build();
+            if (!isRoomAvailable) {
+                throw new RuntimeException("Room with roomId: " + bookingRequest.roomId() + " is not available");
+            }
 
-        bookingRepository.save(booking);
-        log.info("Booking {} is saved successfully", booking.getBookingId());
+            Booking booking = Booking.builder()
+                    .bookingNumber(UUID.randomUUID().toString())
+                    .userId(bookingRequest.userId())
+                    .roomId(bookingRequest.roomId())
+                    .checkIn(bookingRequest.checkIn())
+                    .checkOut(bookingRequest.checkOut())
+                    .purpose(bookingRequest.purpose())
+                    .build();
 
-        return new BookingResponse(
-                booking.getBookingId(),
-                booking.getUserId(),
-                booking.getRoomId(),
-                booking.getCheckIn(),
-                booking.getCheckOut(),
-                booking.getPurpose());
+            bookingRepository.save(booking);
+
+            roomServiceClient.updateRoomAvailability(bookingRequest.roomId(), false);
+
+            return new BookingResponse(
+                    booking.getBookingId(),
+                    booking.getBookingNumber(),
+                    booking.getUserId(),
+                    booking.getRoomId(),
+                    booking.getCheckIn(),
+                    booking.getCheckOut(),
+                    booking.getPurpose()
+            );
+        } catch (Exception e) {
+            log.error("Error occurred while creating booking: {}", e.getMessage(), e);
+            throw new RuntimeException("Failed to create booking: " + e.getMessage());
+        }
     }
+
+
 
     @Override
     public List<BookingResponse> getAllBookings() {
@@ -69,9 +88,11 @@ public class BookingServiceImpl implements BookingService {
         }
     }
 
+
     private BookingResponse mapBookingToBookingResponse(Booking booking) {
         return new BookingResponse(
                 booking.getBookingId(),
+                booking.getBookingNumber(),
                 booking.getUserId(),
                 booking.getRoomId(),
                 booking.getCheckIn(),
@@ -80,39 +101,38 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public String updateBooking(String booking_id, BookingRequest bookingRequest) {
-        log.debug("Revise booking for user: {}", bookingRequest.userId());
-        Query query = new Query();
-        query.addCriteria(Criteria.where("booking_id").is(booking_id));
-        Booking booking = mongoTemplate.findOne(query, Booking.class);
-
+    public String updateBooking(String bookingId, BookingRequest bookingRequest) {
+        log.debug("Update booking for id: {}", bookingId);
+        Booking booking = bookingRepository.findByBookingId(bookingId);
         if (booking != null) {
             booking.setUserId(bookingRequest.userId());
             booking.setRoomId(bookingRequest.roomId());
+            booking.setBookingNumber(bookingRequest.bookingNumber());
             booking.setCheckIn(bookingRequest.checkIn());
             booking.setCheckOut(bookingRequest.checkOut());
             booking.setPurpose(bookingRequest.purpose());
             bookingRepository.save(booking);
-            log.info("Booking {} is updated successfully", booking.getBookingId());
+            log.info("Booking id: {} is updated successfully", booking.getBookingId());
             return booking.getBookingId();
         } else {
-            log.error("Booking {} is not found", booking_id);
+            log.error("Booking {} is not found", bookingId);
             return null;
         }
     }
+
 
     @Override
     public void deleteBooking(String bookingId) {
         log.debug("Deleting booking: {}", bookingId);
         Query query = new Query();
-        query.addCriteria(Criteria.where("booking_id").is(bookingId));
+        query.addCriteria(Criteria.where("bookingId").is(bookingId));
         Booking booking = mongoTemplate.findOne(query, Booking.class);
 
         if (booking != null) {
             bookingRepository.delete(booking);
-            log.info("Booking {} is deleted successfully", bookingId);
+            log.info("Booking id: {} is deleted successfully", booking.getBookingId());
         } else {
-            log.error("Booking {} is not found", bookingId);
+            log.error("Booking id: {} is not found", bookingId);
         }
     }
 }

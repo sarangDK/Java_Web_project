@@ -4,13 +4,33 @@ services:
   booking-service:
     image: booking-service
     ports:
-      - "8094:8094"
+      - "8095:8095"
     build:
       context: ./booking-service
       dockerfile: ./Dockerfile
     container_name: booking-service
     environment:
       SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - mongodb
+    networks:
+      - spring
+
+  event-service:
+    image: event-service
+    ports:
+      - "8041:8041"
+    build:
+<<<<<<< HEAD
+      context: ./event-service  # The directory where the Dockerfile resides
+      dockerfile: ../event-service/Dockerfile    # Specify the Dockerfile for use to build the image
+=======
+      context: ./event-service
+      dockerfile: ../event-service/Dockerfile
+>>>>>>> Daekyung
+    container_name: event-service
+    environment:
+      SPRING_PROFILE-_ACTIVE: docker
     depends_on:
       - mongodb
     networks:
@@ -54,12 +74,12 @@ services:
     image: mongo:latest
     container_name: Assignment01-mongodb
     ports:
-      - "27019:27017"
+      - "27017:27017"
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=password
     volumes:
-      - ./data/mongo/products:/data/db
+      - ./data/mongo/bookings:/data/db
       - ./local-docker-file/mongo/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     networks:
       - spring

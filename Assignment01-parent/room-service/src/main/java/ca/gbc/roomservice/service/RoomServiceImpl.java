@@ -22,10 +22,22 @@ public class RoomServiceImpl implements RoomService {
 
 
     @Override
-    public boolean isRoomAvailable(Long roomId, Boolean roomAvailability) {
+    public boolean isRoomAvailable(Long roomId) {
         Room room = roomRepository.findById(roomId)
                 .orElseThrow(() -> new RuntimeException("Room not found"));
         return room.getRoomAvailability();
+    }
+
+
+
+
+    @Override
+    public List<RoomResponse> getAvailableRooms() {
+        return roomRepository.findAll()
+                .stream()
+                .filter(Room::getRoomAvailability)
+                .map(this::mapRoomToRoomResponse)
+                .toList();
     }
 
     @Override
@@ -75,10 +87,20 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    public void updateRoomAvailability(Long roomId, boolean roomAvailability) {
+        Room room = roomRepository.findById(roomId)
+                .orElseThrow(() -> new RuntimeException("Room not found"));
+        room.setRoomAvailability(roomAvailability);
+        roomRepository.save(room);
+        log.info("Room availability :" + roomAvailability);
+    }
+
+    @Override
     public void deleteRoom(Long roomId) {
         Room room = roomRepository.findById(roomId)
                 .orElseThrow(() -> new RuntimeException("Room not found"));
         roomRepository.delete(room);
+        log.info("Room with id: {} deleted successfully", roomId);
     }
 
     @Override
