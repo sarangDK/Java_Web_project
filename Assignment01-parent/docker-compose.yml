@@ -19,20 +19,15 @@ services:
   event-service:
     image: event-service
     ports:
-      - "8041:8041"
+      - "8042:8042"
     build:
-<<<<<<< HEAD
-      context: ./event-service  # The directory where the Dockerfile resides
-      dockerfile: ../event-service/Dockerfile    # Specify the Dockerfile for use to build the image
-=======
       context: ./event-service
-      dockerfile: ../event-service/Dockerfile
->>>>>>> Daekyung
+      dockerfile: ./Dockerfile
     container_name: event-service
     environment:
-      SPRING_PROFILE-_ACTIVE: docker
+      - SPRING_PROFILES_ACTIVE=docker
     depends_on:
-      - mongodb
+      - mongodb-event
     networks:
       - spring
 
@@ -50,6 +45,21 @@ services:
       - SPRING_DATASOURCE_PASSWORD=password
     depends_on:
       - postgres-roomService
+    networks:
+      - spring
+
+  approval-service:
+    image: approval-service
+    ports:
+      - "8044:8044"
+    build:
+      context: ./approval-service
+      dockerfile: ./Dockerfile
+    container_name: approval-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - mongodb-approval
     networks:
       - spring
 
@@ -81,6 +91,34 @@ services:
     volumes:
       - ./data/mongo/bookings:/data/db
       - ./local-docker-file/mongo/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - spring
+
+  mongodb-event:
+    image: mongo:latest
+    container_name: mongodb-event
+    ports:
+      - "27018:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - ./data/mongo/events:/data/db
+      - ./local-docker-file/mongo-event/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - spring
+
+  mongodb-approval:
+    image: mongo:latest
+    container_name: mongodb-approval
+    ports:
+      - "27019:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - ./data/mongo/approvals:/data/db
+      - ./local-docker-file/mongo-approval/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     networks:
       - spring
 
