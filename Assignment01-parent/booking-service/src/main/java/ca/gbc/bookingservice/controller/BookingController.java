@@ -71,7 +71,7 @@ public class BookingController {
 
         if (updatedBookingId == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Booking Number: " + bookingId + " not found");
+                    .body("Booking id: " + bookingId + " not found");
         }
 
         HttpHeaders headers = new HttpHeaders();
@@ -80,7 +80,7 @@ public class BookingController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .headers(headers)
-                .body("Booking Number: " + updatedBookingId + " updated successfully");
+                .body("Booking ID: " + updatedBookingId + " updated successfully");
     }
 
     // Delete a booking

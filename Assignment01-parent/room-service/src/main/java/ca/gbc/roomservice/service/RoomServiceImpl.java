@@ -92,6 +92,7 @@ public class RoomServiceImpl implements RoomService {
                 .orElseThrow(() -> new RuntimeException("Room not found"));
         room.setRoomAvailability(roomAvailability);
         roomRepository.save(room);
+        log.info("Room availability :" + roomAvailability);
     }
 
     @Override
@@ -99,6 +100,7 @@ public class RoomServiceImpl implements RoomService {
         Room room = roomRepository.findById(roomId)
                 .orElseThrow(() -> new RuntimeException("Room not found"));
         roomRepository.delete(room);
+        log.info("Room with id: {} deleted successfully", roomId);
     }
 
     @Override

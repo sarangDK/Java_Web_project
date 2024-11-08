@@ -20,6 +20,7 @@ public class RoomController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public RoomResponse createRoom(@RequestBody RoomRequest roomRequest) {
+
         return roomService.createRoom(roomRequest);
     }
 
