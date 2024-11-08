@@ -1,5 +1,6 @@
 package ca.gbc.userservice.service;
 
+import ca.gbc.userservice.dto.TypeResponse;
 import ca.gbc.userservice.dto.UserRequest;
 import ca.gbc.userservice.dto.UserResponse;
 import ca.gbc.userservice.model.Type;
@@ -66,6 +67,16 @@ public class UserServiceImpl implements UserService{
 
         return new UserResponse(user.getUser_id(), user.getUser_name(),
                 user.getUser_email(),user.getType());
+    }
+
+    @Override
+    public TypeResponse getType(Long userId) {
+        // check to see if user exists with the userId
+        // throw RunTime error when user not found with userId
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User with ID " + userId + " not found"));
+
+        return new TypeResponse(user.getType().getType_id(), user.getType().getType_name());
     }
 
 

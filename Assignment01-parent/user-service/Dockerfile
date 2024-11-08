@@ -20,6 +20,6 @@ RUN mkdir /app
 
 COPY --from=builder /home/gradle/src/build/libs/*.jar /app/user-service.jar
 
-EXPOSE 8091
+EXPOSE 8092
 
 ENTRYPOINT ["java", "-jar", "/app/user-service.jar"]

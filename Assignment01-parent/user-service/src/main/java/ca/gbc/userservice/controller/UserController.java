@@ -1,5 +1,6 @@
 package ca.gbc.userservice.controller;
 
+import ca.gbc.userservice.dto.TypeResponse;
 import ca.gbc.userservice.dto.UserRequest;
 import ca.gbc.userservice.dto.UserResponse;
 import ca.gbc.userservice.service.UserService;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/v1/user")
 @RequiredArgsConstructor
 public class UserController {
     final UserService userService;
@@ -44,6 +45,11 @@ public class UserController {
          return userService.getUserById(userId);
     }
 
+    @GetMapping("/isStaff/{userId}")
+    @ResponseStatus(HttpStatus.OK)
+    public String isStaff(@PathVariable("userId") Long userId){
+        return userService.getType(userId).type_name();
+    }
 
     @PutMapping("/{userId}")
     public ResponseEntity<?> updateUser(@PathVariable("userId") Long userId,
