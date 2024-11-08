@@ -2,6 +2,7 @@ package ca.gbc.approvalservice.controller;
 
 import ca.gbc.approvalservice.dto.ApprovalRequest;
 import ca.gbc.approvalservice.dto.ApprovalResponse;
+import ca.gbc.approvalservice.dto.EventResponse;
 import ca.gbc.approvalservice.service.ApprovalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -68,5 +69,15 @@ public class ApprovalController {
         return ResponseEntity
                 .status(HttpStatus.NO_CONTENT)
                 .body("Approval deleted successfully");
+    }
+
+    @GetMapping("/eventDetails/{eventId}")
+    public ResponseEntity<EventResponse> getEventDetails(@PathVariable String eventId) {
+        return approvalService.getEventDetails(eventId);
+    }
+
+    @GetMapping("/verify/{userId}")
+    public String verifyUser(@PathVariable Long userId) {
+        return approvalService.verifyUser(userId);
     }
 }

@@ -1,20 +1,20 @@
 
 services:
 
-#  booking-service:
-#    image: booking-service
-#    ports:
-#      - "8095:8095"
-#    build:
-#      context: ./booking-service
-#      dockerfile: ./Dockerfile
-#    container_name: booking-service
-#    environment:
-#      SPRING_PROFILES_ACTIVE: docker
-#    depends_on:
-#      - mongodb
-#    networks:
-#      - spring
+  booking-service:
+    image: booking-service
+    ports:
+      - "8095:8095"
+    build:
+      context: ./booking-service
+      dockerfile: ./Dockerfile
+    container_name: booking-service
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - mongodb
+    networks:
+      - spring
 
   event-service:
     image: event-service
@@ -28,40 +28,41 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
       - mongodb-event
+      - user-service
     networks:
       - spring
 
-#  room-service:
-#    build:
-#      context: ./room-service
-#      dockerfile: ./Dockerfile
-#    container_name: room-service
-#    ports:
-#      - "8091:8090"
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-roomService:5432/room-service
-#      - SPRING_DATASOURCE_USERNAME=admin
-#      - SPRING_DATASOURCE_PASSWORD=password
-#    depends_on:
-#      - postgres-roomService
-#    networks:
-#      - spring
+  room-service:
+    build:
+      context: ./room-service
+      dockerfile: ./Dockerfile
+    container_name: room-service
+    ports:
+      - "8091:8090"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-roomService:5432/room-service
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=password
+    depends_on:
+      - postgres-roomService
+    networks:
+      - spring
 
-#  approval-service:
-#    image: approval-service
-#    ports:
-#      - "8044:8044"
-#    build:
-#      context: ./approval-service
-#      dockerfile: ./Dockerfile
-#    container_name: approval-service
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#    depends_on:
-#      - mongodb-approval
-#    networks:
-#      - spring
+  approval-service:
+    image: approval-service
+    ports:
+      - "8044:8044"
+    build:
+      context: ./approval-service
+      dockerfile: ./Dockerfile
+    container_name: approval-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - mongodb-approval
+    networks:
+      - spring
 
   user-service:
     build:
@@ -80,19 +81,19 @@ services:
     networks:
       - spring
 
-#  mongodb:
-#    image: mongo:latest
-#    container_name: Assignment01-mongodb
-#    ports:
-#      - "27017:27017"
-#    environment:
-#      - MONGO_INITDB_ROOT_USERNAME=admin
-#      - MONGO_INITDB_ROOT_PASSWORD=password
-#    volumes:
-#      - ./data/mongo/bookings:/data/db
-#      - ./local-docker-file/mongo/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-#    networks:
-#      - spring
+  mongodb:
+    image: mongo:latest
+    container_name: Assignment01-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - ./data/mongo/bookings:/data/db
+      - ./local-docker-file/mongo/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - spring
 
   mongodb-event:
     image: mongo:latest
@@ -108,34 +109,34 @@ services:
     networks:
       - spring
 
-#  mongodb-approval:
-#    image: mongo:latest
-#    container_name: mongodb-approval
-#    ports:
-#      - "27019:27017"
-#    environment:
-#      - MONGO_INITDB_ROOT_USERNAME=admin
-#      - MONGO_INITDB_ROOT_PASSWORD=password
-#    volumes:
-#      - ./data/mongo/approvals:/data/db
-#      - ./local-docker-file/mongo-approval/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-#    networks:
-#      - spring
+  mongodb-approval:
+    image: mongo:latest
+    container_name: mongodb-approval
+    ports:
+      - "27019:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - ./data/mongo/approvals:/data/db
+      - ./local-docker-file/mongo-approval/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - spring
 
-#  postgres-roomService:
-#    image: postgres:latest
-#    container_name: postgres-roomService
-#    environment:
-#      - POSTGRES_DB=room-service
-#      - POSTGRES_USER=admin
-#      - POSTGRES_PASSWORD=password
-#    ports:
-#      - "5435:5432"
-#    volumes:
-#      - ./data/postgres/room:/var/lib/postgresql/data
-#      - ./local-docker-file/postgres/init/room/init.sql:/docker-entrypoint-initdb.d/init.sql
-#    networks:
-#      - spring
+  postgres-roomService:
+    image: postgres:latest
+    container_name: postgres-roomService
+    environment:
+      - POSTGRES_DB=room-service
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+    ports:
+      - "5435:5432"
+    volumes:
+      - ./data/postgres/room:/var/lib/postgresql/data
+      - ./local-docker-file/postgres/init/room/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - spring
 
   postgres-userService:
     image: postgres:latest
@@ -152,33 +153,33 @@ services:
     networks:
       - spring
 
-#  mongo-express:
-#    image: mongo-express
-#    ports:
-#      - "8093:8081"
-#    environment:
-#      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
-#      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
-#      - ME_CONFIG_MONGODB_SERVER=mongodb
-#    container_name: assignment01-mongo-express
-#    depends_on:
-#      - mongodb
-#    networks:
-#      - spring
+  mongo-express:
+    image: mongo-express
+    ports:
+      - "8093:8081"
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+    container_name: assignment01-mongo-express
+    depends_on:
+      - mongodb
+    networks:
+      - spring
 
-#  pgadmin:
-#    image: dpage/pgadmin4
-#    ports:
-#      - "8999:80"
-#    container_name: pgadmin
-#    environment:
-#      - PGADMIN_DEFAULT_EMAIL=user@domain.ca
-#      - PGADMIN_DEFAULT_PASSWORD=password
-#    depends_on:
-#      - postgres-roomService
-#      - postgres-userService
-#    networks:
-#      - spring
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "8999:80"
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=user@domain.ca
+      - PGADMIN_DEFAULT_PASSWORD=password
+    depends_on:
+      - postgres-roomService
+      - postgres-userService
+    networks:
+      - spring
 
 volumes:
   mongodb-db:

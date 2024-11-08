@@ -1,8 +1,10 @@
 package ca.gbc.approvalservice.service;
 
+import ca.gbc.approvalservice.client.EventClient;
 import ca.gbc.approvalservice.client.UserClient;
 import ca.gbc.approvalservice.dto.ApprovalRequest;
 import ca.gbc.approvalservice.dto.ApprovalResponse;
+import ca.gbc.approvalservice.dto.EventResponse;
 import ca.gbc.approvalservice.model.Approval;
 import ca.gbc.approvalservice.repository.ApprovalRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,12 +25,14 @@ public class ApprovalServiceImpl implements ApprovalService{
     private final ApprovalRepository approvalRepository;
     private final MongoTemplate mongoTemplate;
     private final UserClient userClient;
+    private final EventClient eventClient;
     @Override
     public ApprovalResponse createApproval(ApprovalRequest approvalRequest) {
 
         // get check user role
         var isStaff = userClient.isStaff(approvalRequest.userId());
-
+        // event details
+        var eventDetails = eventClient.getEventById(approvalRequest.eventId());
         if (isStaff.equals("Staff")) {
             log.debug("Create approval for userId: {}", approvalRequest.userId());
             Approval approval = Approval.builder()
@@ -52,7 +57,7 @@ public class ApprovalServiceImpl implements ApprovalService{
 
     @Override
     public List<ApprovalResponse> getAllApproval() {
-        log.debug("Returning all events");
+        log.debug("Returning all approvals");
         List<Approval> approvals = approvalRepository.findAll();
         return approvals.stream().map(this::mapEventToEventResponse).toList();
     }
@@ -114,6 +119,22 @@ public class ApprovalServiceImpl implements ApprovalService{
             log.info("Approval {} is  deleted successfully", approvalId);
         } else {
             log.error("Approval {} is not found", approvalId);
+        }
+    }
+
+    @Override
+    public ResponseEntity<EventResponse> getEventDetails(String eventId) {
+        log.info("Fetch the Event with ID: {}", eventId);
+        return eventClient.getEventById(eventId);
+    }
+
+    @Override
+    public String verifyUser(Long userId) {
+        log.info("Check the userID able to approve or not: {}", userId);
+        if (userClient.isStaff(userId).equals("Staff")) {
+            return "userId " + userId + " able to make an approval";
+        } else {
+            return "userId " + userId + " unable to make an approval, please try again";
         }
     }
 }
