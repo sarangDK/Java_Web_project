@@ -39,3 +39,6 @@ out/
 ### Ignore XML files ###
 misc.xml
 workspace.xml
+
+### Data file ###
+./data
