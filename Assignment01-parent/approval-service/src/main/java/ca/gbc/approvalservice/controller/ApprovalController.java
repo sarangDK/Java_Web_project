@@ -71,9 +71,13 @@ public class ApprovalController {
                 .body("Approval deleted successfully");
     }
 
-
     @GetMapping("/eventDetails/{eventId}")
     public ResponseEntity<EventResponse> getEventDetails(@PathVariable String eventId) {
         return approvalService.getEventDetails(eventId);
+    }
+
+    @GetMapping("/verify/{userId}")
+    public String verifyUser(@PathVariable Long userId) {
+        return approvalService.verifyUser(userId);
     }
 }

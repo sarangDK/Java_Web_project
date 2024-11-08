@@ -19,4 +19,6 @@ public interface ApprovalService {
     void deleteApproval(String approvalId);
 
     ResponseEntity<EventResponse> getEventDetails(String eventId);
+
+    String verifyUser(Long userId);
 }

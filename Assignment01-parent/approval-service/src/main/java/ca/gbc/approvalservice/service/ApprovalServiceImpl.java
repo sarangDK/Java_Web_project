@@ -127,4 +127,14 @@ public class ApprovalServiceImpl implements ApprovalService{
         log.info("Fetch the Event with ID: {}", eventId);
         return eventClient.getEventById(eventId);
     }
+
+    @Override
+    public String verifyUser(Long userId) {
+        log.info("Check the userID able to approve or not: {}", userId);
+        if (userClient.isStaff(userId).equals("Staff")) {
+            return "userId " + userId + " able to make an approval";
+        } else {
+            return "userId " + userId + " unable to make an approval, please try again";
+        }
+    }
 }
