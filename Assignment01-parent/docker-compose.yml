@@ -21,13 +21,9 @@ services:
     ports:
       - "8041:8041"
     build:
-<<<<<<< HEAD
       context: ./event-service  # The directory where the Dockerfile resides
       dockerfile: ../event-service/Dockerfile    # Specify the Dockerfile for use to build the image
-=======
-      context: ./event-service
-      dockerfile: ../event-service/Dockerfile
->>>>>>> Daekyung
+
     container_name: event-service
     environment:
       SPRING_PROFILE-_ACTIVE: docker
