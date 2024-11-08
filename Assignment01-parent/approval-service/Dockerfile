@@ -19,7 +19,7 @@ FROM openjdk:22-jdk
 RUN mkdir /app
 
 # CPOY --from=builder means that the files from the builder stage are copied to the current stage
-COPY --from=builder /home/gradle/src/build/libs/*.jar /app/event-service.jar
+COPY --from=builder /home/gradle/src/build/libs/*.jar /app/approval-service.jar
 
 # ENV means that the environment variables are set in the container
 
@@ -27,8 +27,8 @@ ENV MONGO_DB_USERNAME=admin \
     MONGO_DB_PWD=password
 
 
-EXPOSE 8042
+EXPOSE 8044
 
 #ENTYPOINT means that the container will run the command that is specified
 # in the ENTRYPOINT when the container starts.
-ENTRYPOINT ["java", "-jar", "/app/event-service.jar"]
+ENTRYPOINT ["java", "-jar", "/app/approval-service.jar"]
