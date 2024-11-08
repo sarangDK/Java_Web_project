@@ -357,8 +357,7 @@ class UserServiceApplicationTests {
                 .get("/api/v1/user/isStaff/"+user_id)
                 .then()
                 .statusCode(200)
-                .body("type_name", Matchers.equalTo("student"))
-                .body("type_id", Matchers.equalTo(type_id));
+                .body(Matchers.equalTo("student"));
     }
     @Test
     void updateUserTest(){

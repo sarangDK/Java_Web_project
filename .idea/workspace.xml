@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7b3c832-3ec2-4841-8e95-e7515112bd5e" name="Changes" comment="path changed to /api/v1/ and isStaff added">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01-parent/user-service/src/main/java/ca/gbc/userservice/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/user-service/src/main/java/ca/gbc/userservice/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assignment01-parent/user-service/src/test/java/ca/gbc/userservice/UserServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/user-service/src/test/java/ca/gbc/userservice/UserServiceApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -332,7 +330,7 @@
       <workItem from="1730757112893" duration="511000" />
       <workItem from="1730757755867" duration="7526000" />
       <workItem from="1730827371575" duration="1631000" />
-      <workItem from="1730992050448" duration="465000" />
+      <workItem from="1730992050448" duration="2654000" />
     </task>
     <task id="LOCAL-00001" summary="oct.30">
       <option name="closed" value="true" />
