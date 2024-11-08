@@ -15,4 +15,6 @@ public interface ApprovalService {
     String updateApproval(String approvalId, ApprovalRequest approvalRequest);
 
     void deleteApproval(String approvalId);
+
+    void getEventDetails(String eventId);
 }

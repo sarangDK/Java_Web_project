@@ -69,4 +69,10 @@ public class ApprovalController {
                 .status(HttpStatus.NO_CONTENT)
                 .body("Approval deleted successfully");
     }
+
+
+    @GetMapping("/eventDetails{eventId}")
+    public void getEventDetails(@PathVariable String eventId) {
+        approvalService.getEventDetails(eventId);
+    }
 }

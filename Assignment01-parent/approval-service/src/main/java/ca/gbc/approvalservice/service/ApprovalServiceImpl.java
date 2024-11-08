@@ -1,5 +1,6 @@
 package ca.gbc.approvalservice.service;
 
+import ca.gbc.approvalservice.client.EventClient;
 import ca.gbc.approvalservice.client.UserClient;
 import ca.gbc.approvalservice.dto.ApprovalRequest;
 import ca.gbc.approvalservice.dto.ApprovalResponse;
@@ -22,12 +23,14 @@ public class ApprovalServiceImpl implements ApprovalService{
     private final ApprovalRepository approvalRepository;
     private final MongoTemplate mongoTemplate;
     private final UserClient userClient;
+    private final EventClient eventClient;
     @Override
     public ApprovalResponse createApproval(ApprovalRequest approvalRequest) {
 
         // get check user role
         var isStaff = userClient.isStaff(approvalRequest.userId());
-
+        // event details
+        var eventDetails = eventClient.getEventById(approvalRequest.eventId());
         if (isStaff.equals("Staff")) {
             log.debug("Create approval for userId: {}", approvalRequest.userId());
             Approval approval = Approval.builder()
@@ -52,7 +55,7 @@ public class ApprovalServiceImpl implements ApprovalService{
 
     @Override
     public List<ApprovalResponse> getAllApproval() {
-        log.debug("Returning all events");
+        log.debug("Returning all approvals");
         List<Approval> approvals = approvalRepository.findAll();
         return approvals.stream().map(this::mapEventToEventResponse).toList();
     }
@@ -115,5 +118,11 @@ public class ApprovalServiceImpl implements ApprovalService{
         } else {
             log.error("Approval {} is not found", approvalId);
         }
+    }
+
+    @Override
+    public void getEventDetails(String eventId) {
+        log.info("Fetch the Event with ID: {}", eventId);
+        eventClient.getEventById(eventId);
     }
 }

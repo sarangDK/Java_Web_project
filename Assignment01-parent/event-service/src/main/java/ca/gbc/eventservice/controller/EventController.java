@@ -45,6 +45,19 @@ public class EventController {
                 .body(events);
     }
 
+    @GetMapping("/{eventId}")
+    public ResponseEntity<String> getEventById(@PathVariable String eventId) {
+        EventResponse eventResponse = eventService.getEventById(eventId);
+        if (eventResponse == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(null);
+        }
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(eventId);
+    }
+
     @PutMapping("/{eventId}")
     public ResponseEntity<String> updateEvent(@PathVariable String eventId, @RequestBody EventRequest eventRequest) {
         String updatedEventId = eventService.updateEvent(eventId, eventRequest);

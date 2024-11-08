@@ -56,7 +56,6 @@ public class BookingController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(null);
         }
-
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .contentType(MediaType.APPLICATION_JSON)
