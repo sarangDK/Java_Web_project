@@ -20,10 +20,15 @@ public class RoomController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public RoomResponse createRoom(@RequestBody RoomRequest roomRequest) {
+
         return roomService.createRoom(roomRequest);
     }
 
 
+    @GetMapping("/availableRooms")
+    public List<RoomResponse> getAvailableRooms() {
+        return roomService.getAvailableRooms();
+    }
     // Get all rooms
     @GetMapping
     public List<RoomResponse> getAllRooms() {
@@ -43,11 +48,26 @@ public class RoomController {
         return roomService.updateRoom(id, roomRequest);
     }
 
+    @PutMapping("/availability/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateRoomAvailability(@PathVariable Long id, @RequestParam boolean availability) {
+        roomService.updateRoomAvailability(id, availability);
+    }
+
     // Delete room operation
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteRoom(@PathVariable Long id) {
         roomService.deleteRoom(id);
     }
+
+    // Check if a room is available
+    @GetMapping("/availability/{id}")
+    public boolean isRoomAvailable(@PathVariable Long id) {
+        return roomService.isRoomAvailable(id);
+    }
+
+
+
 
 }

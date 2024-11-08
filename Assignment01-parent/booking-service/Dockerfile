@@ -5,7 +5,7 @@
 FROM gradle:8-jdk22-alpine AS builder
 
 # Set the working directory - the location of the source code
-COPY --chown=gradle:gradele . /home/gradle/src
+COPY --chown=gradle:gradle . /home/gradle/src
 
 WORKDIR /home/gradle/src
 
@@ -27,7 +27,7 @@ ENV MONGO_DB_USERNAME=admin \
     MONGO_DB_PWD=password
 
 
-EXPOSE 8094
+EXPOSE 8095
 
 #ENTYPOINT means that the container will run the command that is specified
 # in the ENTRYPOINT when the container starts.

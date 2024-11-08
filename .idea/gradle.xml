@@ -9,7 +9,9 @@
           <set>
             <option value="$PROJECT_DIR$/Assignment01-parent" />
             <option value="$PROJECT_DIR$/Assignment01-parent/booking-service" />
+            <option value="$PROJECT_DIR$/Assignment01-parent/event-service" />
             <option value="$PROJECT_DIR$/Assignment01-parent/room-service" />
+            <option value="$PROJECT_DIR$/Assignment01-parent/user-service" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -4,7 +4,7 @@ services:
   booking-service:
     image: booking-service
     ports:
-      - "8094:8094"
+      - "8095:8095"
     build:
       context: ./booking-service
       dockerfile: ./Dockerfile
@@ -21,8 +21,13 @@ services:
     ports:
       - "8041:8041"
     build:
+<<<<<<< HEAD
       context: ./event-service  # The directory where the Dockerfile resides
       dockerfile: ../event-service/Dockerfile    # Specify the Dockerfile for use to build the image
+=======
+      context: ./event-service
+      dockerfile: ../event-service/Dockerfile
+>>>>>>> Daekyung
     container_name: event-service
     environment:
       SPRING_PROFILE-_ACTIVE: docker
@@ -35,6 +40,7 @@ services:
     build:
       context: ./room-service
       dockerfile: ./Dockerfile
+    container_name: room-service
     ports:
       - "8091:8090"
     environment:
@@ -47,16 +53,33 @@ services:
     networks:
       - spring
 
+  user-service:
+    build:
+      context: ./user-service
+      dockerfile: ./Dockerfile
+    container_name: user-service
+    ports:
+      - "8092:8090"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-userService:5432/user-service
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=password
+    depends_on:
+      - postgres-userService
+    networks:
+      - spring
+
   mongodb:
     image: mongo:latest
     container_name: Assignment01-mongodb
     ports:
-      - "27019:27017"
+      - "27017:27017"
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=password
     volumes:
-      - ./data/mongo/products:/data/db
+      - ./data/mongo/bookings:/data/db
       - ./local-docker-file/mongo/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     networks:
       - spring
@@ -71,8 +94,23 @@ services:
     ports:
       - "5435:5432"
     volumes:
-      - ./data/postgres:/var/lib/postgresql/data
+      - ./data/postgres/room:/var/lib/postgresql/data
       - ./local-docker-file/postgres/init/room/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - spring
+
+  postgres-userService:
+    image: postgres:latest
+    container_name: postgres-userService
+    environment:
+      - POSTGRES_DB=user-service
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+    ports:
+      - "5436:5432"
+    volumes:
+      - ./data/postgres/user:/var/lib/postgresql/data
+      - ./local-docker-file/postgres/init/user/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - spring
 
@@ -100,6 +138,7 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=password
     depends_on:
       - postgres-roomService
+      - postgres-userService
     networks:
       - spring
 
