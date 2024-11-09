@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "98578576-d31f-4819-811c-fac824e7139f",
+		"name": "COMP3095",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38468951"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8091/api/rooms/availableRooms",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"roomName\" : \"Activity -  Room2\",\r\n    \"roomCapacity\" : 10,\r\n    \"roomAvailability\" : true,\r\n    \"roomFeatures\": \"Just large roon for activity\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8091/api/rooms/availableRooms",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"api",
+						"rooms",
+						"availableRooms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8095/api/v1/booking",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\" : 1,\r\n    \"roomId\" : 1,\r\n    \"checkIn\" : \"2021-10-10T10:00:00\",\r\n    \"checkOut\" : \"2021-10-10T11:00:00\",\r\n    \"purpose\": \"Acitivty purpose\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8095/api/v1/booking",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8095",
+					"path": [
+						"api",
+						"v1",
+						"booking"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
