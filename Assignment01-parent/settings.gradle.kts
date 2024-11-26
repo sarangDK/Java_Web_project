@@ -1,2 +1,2 @@
 rootProject.name = "Assignment01-parent"
-include("booking-service","room-service","user-service","event-service")
+include("api-gateway", "approval-service", "booking-service","room-service","user-service","event-service")
