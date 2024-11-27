@@ -15,7 +15,7 @@ services:
 #      - mongodb
 #    networks:
 #      - spring
-#
+
 #  event-service:
 #    image: event-service
 #    ports:
@@ -31,7 +31,7 @@ services:
 #      - user-service
 #    networks:
 #      - spring
-#
+
 #  room-service:
 #    build:
 #      context: ./room-service
@@ -48,7 +48,7 @@ services:
 #      - postgres-roomService
 #    networks:
 #      - spring
-#
+
   approval-service:
     image: approval-service
     ports:
@@ -63,7 +63,7 @@ services:
       - mongodb-approval
     networks:
       - spring
-#
+
 #  user-service:
 #    build:
 #      context: ./user-service
@@ -80,7 +80,7 @@ services:
 #      - postgres-userService
 #    networks:
 #      - spring
-#
+
 #  mongodb:
 #    image: mongo:latest
 #    container_name: Assignment01-mongodb
@@ -94,7 +94,7 @@ services:
 #      - ./local-docker-file/mongo/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
 #    networks:
 #      - spring
-#
+
 #  mongodb-event:
 #    image: mongo:latest
 #    container_name: mongodb-event
@@ -108,7 +108,7 @@ services:
 #      - ./local-docker-file/mongo-event/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
 #    networks:
 #      - spring
-#
+
   mongodb-approval:
     image: mongo:latest
     container_name: mongodb-approval
@@ -122,7 +122,7 @@ services:
       - ./local-docker-file/mongo-approval/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     networks:
       - spring
-#
+
 #  postgres-roomService:
 #    image: postgres:latest
 #    container_name: postgres-roomService
@@ -191,6 +191,45 @@ services:
       dockerfile: ./Dockerfile    # Specify the Dockerfile for use to build the image
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - spring
+
+  keycloak:
+    container_name: keycloak-project
+    hostname: keycloak
+    image: quay.io/keycloak/keycloak:24.0.1
+    command: [ "start-dev", "--import-realm" ]
+    environment:
+      DB_VENDOR: postgres
+      DB_ADDR: postgres-keycloak
+      DB_DATABASE: keycloak
+      DB_USER: admin
+      DB_PASSWORD: password
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: password
+      ROOT_LOGLEVEL: DEBUG
+      JBOSS_LOG_MANAGER_ROOT_LOGGER: DEBUG, stdout, FILE
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres-keycloak
+    volumes:
+      - ./realms/:/opt/keycloak/data/import
+    networks:
+      - spring
+
+  postgres-keycloak:
+    image: postgres
+    ports:
+      - "5434:5432"
+    container_name: postgres-keycloak-project
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=keycloak
+      - PG_DATA=/data/postgres
+    volumes:
+      - ./data/keycloak:/var/lib/postgresql/data
     networks:
       - spring
 

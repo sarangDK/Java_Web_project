@@ -42,7 +42,7 @@ public class Routes {
         log.info("Initializing approval service route with URL: {}", approvalServiceUrl);
         return GatewayRouterFunctions.route("approval_service")
                 .route(RequestPredicates.path("/api/v1/approval"), HandlerFunctions.http(approvalServiceUrl))
-                .filter(CircuitBreakerFilterFunctions.circuitBreaker("productServiceCircuitBreaker",
+                .filter(CircuitBreakerFilterFunctions.circuitBreaker("approvalServiceCircuitBreaker",
                         URI.create("forward:/fallbackRoute")))
                 .build();
     }
