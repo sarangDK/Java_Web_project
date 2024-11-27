@@ -49,20 +49,20 @@ services:
 #    networks:
 #      - spring
 #
-#  approval-service:
-#    image: approval-service
-#    ports:
-#      - "8044:8044"
-#    build:
-#      context: ./approval-service
-#      dockerfile: ./Dockerfile
-#    container_name: approval-service
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#    depends_on:
-#      - mongodb-approval
-#    networks:
-#      - spring
+  approval-service:
+    image: approval-service
+    ports:
+      - "8044:8044"
+    build:
+      context: ./approval-service
+      dockerfile: ./Dockerfile
+    container_name: approval-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - mongodb-approval
+    networks:
+      - spring
 #
 #  user-service:
 #    build:
@@ -109,19 +109,19 @@ services:
 #    networks:
 #      - spring
 #
-#  mongodb-approval:
-#    image: mongo:latest
-#    container_name: mongodb-approval
-#    ports:
-#      - "27019:27017"
-#    environment:
-#      - MONGO_INITDB_ROOT_USERNAME=admin
-#      - MONGO_INITDB_ROOT_PASSWORD=password
-#    volumes:
-#      - ./data/mongo/approvals:/data/db
-#      - ./local-docker-file/mongo-approval/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-#    networks:
-#      - spring
+  mongodb-approval:
+    image: mongo:latest
+    container_name: mongodb-approval
+    ports:
+      - "27019:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - ./data/mongo/approvals:/data/db
+      - ./local-docker-file/mongo-approval/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - spring
 #
 #  postgres-roomService:
 #    image: postgres:latest
