@@ -12,12 +12,9 @@
         <module name="Assignment01-parent.booking-service.main" />
         <module name="Assignment01-parent.room-service.main" />
         <module name="Assignment01-parent.user-service.main" />
+        <module name="Assignment01-parent.api-gateway.main" />
+        <module name="Assignment01-parent.approval-service.main" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Assignment01-parent.user-service" target="22" />
-      <module name="Assignment01-parent.user-service.main" target="22" />
-      <module name="Assignment01-parent.user-service.test" target="22" />
-    </bytecodeTargetLevel>
   </component>
 </project>
