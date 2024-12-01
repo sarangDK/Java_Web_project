@@ -39,7 +39,7 @@ services:
       dockerfile: ./Dockerfile
     container_name: room-service
     ports:
-      - "8091:8090"
+      - "8090:8090"
     environment:
       SPRING_PROFILES_ACTIVE: docker
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-roomService:5432/room-service

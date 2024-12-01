@@ -25,6 +25,6 @@ ENV PGADMIN_DEFAULT_EMAIL=user@domain.ca \
 
 
 
-EXPOSE 8091
+EXPOSE 8090
 
 ENTRYPOINT ["java", "-jar", "/app/room-service.jar"]
