@@ -17,8 +17,8 @@ import java.time.Duration;
 @Configuration
 public class RestClientConfig {
 
-    @Value("${approval.service.url}")
-    private String approvalServiceUrl;
+    @Value("${event.service.url}")
+    private String eventServiceUrl;
 
     @Value("${user.service.url}")
     private String userServiceUrl;
@@ -27,7 +27,7 @@ public class RestClientConfig {
     public EventClient eventClient() {
 
         RestClient restClient = RestClient.builder()
-                .baseUrl(approvalServiceUrl)
+                .baseUrl(eventServiceUrl)
                 .requestFactory(getClientRequestFactory())
                 .build();
 
@@ -41,7 +41,7 @@ public class RestClientConfig {
     public UserClient userClient() {
 
         RestClient restClient = RestClient.builder()
-                .baseUrl(approvalServiceUrl)
+                .baseUrl(userServiceUrl)
                 .requestFactory(getClientRequestFactory())
                 .build();
 

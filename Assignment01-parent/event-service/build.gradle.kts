@@ -27,7 +27,18 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.cloud:spring-cloud-starter-openfeign:4.1.3")
+
+    // Kafka dependencies
+    implementation("org.springframework.kafka:spring-kafka:3.3.0")
+    testImplementation("org.springframework.kafka:spring-kafka-test:3.3.0")
+    testImplementation("org.testcontainers:kafka:1.20.4")
+
+    // Logging dependencies
+    implementation("com.github.loki4j:loki-logback-appender:1.5.1")
+    implementation("io.micrometer:micrometer-registry-prometheus:1.13.6")
+    implementation("io.micrometer:micrometer-tracing-bridge-brave:1.3.2")
+    implementation("org.springframework.boot:spring-boot-starter-aop:3.3.3")
+
     implementation("org.springframework.cloud:spring-cloud-starter-contract-stub-runner:4.1.3")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:2.6.0")

@@ -236,7 +236,7 @@ services:
       - spring
 
   zookeeper:
-    image: confluentinc/cp-zookeeper
+    image: confluentinc/cp-zookeeper:7.5.0
     container_name: zookeeper-assignment02
     hostname: zookeeper
     ports:
@@ -267,7 +267,7 @@ services:
 
   kafka-ui:
       image: provectuslabs/kafka-ui
-      container_name: kafka-ui
+      container_name: kafka-ui-project
       ports:
         - "8086:8080"
       environment:

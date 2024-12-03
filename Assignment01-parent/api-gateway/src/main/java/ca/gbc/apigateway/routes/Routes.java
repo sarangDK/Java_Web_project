@@ -65,7 +65,7 @@ public class Routes {
         log.info("Initializing event service route with URL: {}", eventServiceUrl);
         return GatewayRouterFunctions.route("event_service")
                 .route(RequestPredicates.path("/api/v1/event"), HandlerFunctions.http(eventServiceUrl))
-                .filter(CircuitBreakerFilterFunctions.circuitBreaker("inventoryServiceCircuitBreaker",
+                .filter(CircuitBreakerFilterFunctions.circuitBreaker("eventServiceCircuitBreaker",
                         URI.create("forward:/fallbackRoute")))
                 .build();
     }

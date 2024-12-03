@@ -3,12 +3,15 @@ package ca.gbc.eventservice.service;
 import ca.gbc.eventservice.client.UserClient;
 import ca.gbc.eventservice.dto.EventRequest;
 import ca.gbc.eventservice.dto.EventResponse;
+import ca.gbc.eventservice.event.BookingCreatedEvent;
 import ca.gbc.eventservice.model.Event;
 import ca.gbc.eventservice.repository.EventRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.kafka.annotation.KafkaHandler;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.transaction.annotation.Transactional;
@@ -121,5 +124,10 @@ public class EventServiceImpl implements EventService {
         } else {
             log.error("Event {} is not found", eventId);
         }
+    }
+
+    @KafkaListener(topics = "booking-created")
+    public void listen(BookingCreatedEvent bookingCreatedEvent) {
+        log.info("Got booking request from booking-created topic {}", bookingCreatedEvent);
     }
 }
