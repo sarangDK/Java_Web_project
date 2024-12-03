@@ -49,11 +49,11 @@ public class Routes {
 
 
     @Bean
-    public RouterFunction<ServerResponse> orderServiceRoute() {
+    public RouterFunction<ServerResponse> bookingServiceRoute() {
         log.info("Initializing order service route with URL: {}", bookingServiceUrl);
         return GatewayRouterFunctions.route("order_service")
-                .route(RequestPredicates.path("/api/order"), HandlerFunctions.http(bookingServiceUrl))
-                .filter(CircuitBreakerFilterFunctions.circuitBreaker("orderServiceCircuitBreaker",
+                .route(RequestPredicates.path("/api/v1/booking"), HandlerFunctions.http(bookingServiceUrl))
+                .filter(CircuitBreakerFilterFunctions.circuitBreaker("bookingServiceCircuitBreaker",
                         URI.create("forward:/fallbackRoute")))
                 .build();
     }
