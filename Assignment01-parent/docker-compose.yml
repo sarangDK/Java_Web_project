@@ -39,7 +39,7 @@ services:
       dockerfile: ./Dockerfile
     container_name: room-service
     ports:
-      - "8091:8090"
+      - "8091:8091"
     environment:
       SPRING_PROFILES_ACTIVE: docker
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-roomService:5432/room-service
@@ -237,7 +237,7 @@ services:
 
   zookeeper:
     image: confluentinc/cp-zookeeper
-    container_name: zookeeper
+    container_name: zookeeper-assignment02
     hostname: zookeeper
     ports:
       - "2181:2181"
@@ -249,34 +249,37 @@ services:
 
   broker:
     image: confluentinc/cp-kafka:7.5.0
-    container_name: broker
+    container_name: broker-assignment02
     ports:
-      - "9092:9092"
-      - "29092:29092"
+      - "9092:9092" # For external access
+      - "29092:29092" # For internal Docker network access
     environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT, PLAINTEXT_HOST:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:29092, PLAINTEXT_HOST://host.docker.internal:9092
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+        KAFKA_BROKER_ID: 1
+        KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+        KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+        KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:29092,PLAINTEXT_HOST://host.docker.internal:9092
+        KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+        KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true" # Optional: Allows Kafka to auto-create topics
     depends_on:
-      - zookeeper
+        - zookeeper
     networks:
-      - spring
+        - spring
 
   kafka-ui:
-    image: provectuslabs/kafka-ui
-    container_name: kafka-ui
-    ports:
-      - "8086:8080"
-    environment:
-      KAFKA_CLUSTER_NAME: local
-      KAFKA_CLUSTERS_BOOTSTRAPSERVERS: broker:29092
-      DYNAMIC_CONFIG_ENABLED: "true"
-    depends_on:
-      - broker
-    networks:
-      - spring
+      image: provectuslabs/kafka-ui
+      container_name: kafka-ui
+      ports:
+        - "8086:8080"
+      environment:
+        KAFKA_CLUSTERS_0_NAME: local
+        KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: broker:29092
+        KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+        DYNAMIC_CONFIG_ENABLED: "true" # Allows dynamic configuration changes
+        KAFKA_CLUSTERS_0_READONLY: "false" # Enables write operations via the UI
+      depends_on:
+        - broker
+      networks:
+        - spring
 
 volumes:
   mongodb-db:

@@ -31,8 +31,10 @@ public class Routes {
 
     @Value("${service.event.url}")
     private String eventServiceUrl;
+
     @Value("${service.room.url}")
     private String roomServiceUrl;
+
     @Value("${service.user.url}")
     private String userServiceUrl;
 
@@ -51,9 +53,9 @@ public class Routes {
     @Bean
     public RouterFunction<ServerResponse> bookingServiceRoute() {
         log.info("Initializing order service route with URL: {}", bookingServiceUrl);
-        return GatewayRouterFunctions.route("order_service")
-                .route(RequestPredicates.path("/api/booking"), HandlerFunctions.http(bookingServiceUrl))
-                .filter(CircuitBreakerFilterFunctions.circuitBreaker("orderServiceCircuitBreaker",
+        return GatewayRouterFunctions.route("booking_service")
+                .route(RequestPredicates.path("/api/v1/booking"), HandlerFunctions.http(bookingServiceUrl))
+                .filter(CircuitBreakerFilterFunctions.circuitBreaker("bookingServiceCircuitBreaker",
                         URI.create("forward:/fallbackRoute")))
                 .build();
     }
@@ -73,7 +75,7 @@ public class Routes {
         log.info("Initializing room service route with URL: {}", roomServiceUrl);
         return GatewayRouterFunctions.route("room_service")
                 .route(RequestPredicates.path("/api/v1/room"), HandlerFunctions.http(roomServiceUrl))
-                .filter(CircuitBreakerFilterFunctions.circuitBreaker("inventoryServiceCircuitBreaker",
+                .filter(CircuitBreakerFilterFunctions.circuitBreaker("roomServiceCircuitBreaker",
                         URI.create("forward:/fallbackRoute")))
                 .build();
     }
@@ -83,7 +85,7 @@ public class Routes {
         log.info("Initializing user service route with URL: {}", userServiceUrl);
         return GatewayRouterFunctions.route("user_service")
                 .route(RequestPredicates.path("/api/v1/user"), HandlerFunctions.http(userServiceUrl))
-                .filter(CircuitBreakerFilterFunctions.circuitBreaker("inventoryServiceCircuitBreaker",
+                .filter(CircuitBreakerFilterFunctions.circuitBreaker("userServiceCircuitBreaker",
                         URI.create("forward:/fallbackRoute")))
                 .build();
     }
