@@ -8,6 +8,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/Assignment01-parent" />
+            <option value="$PROJECT_DIR$/Assignment01-parent/api-gateway" />
+            <option value="$PROJECT_DIR$/Assignment01-parent/approval-service" />
             <option value="$PROJECT_DIR$/Assignment01-parent/booking-service" />
             <option value="$PROJECT_DIR$/Assignment01-parent/event-service" />
             <option value="$PROJECT_DIR$/Assignment01-parent/room-service" />

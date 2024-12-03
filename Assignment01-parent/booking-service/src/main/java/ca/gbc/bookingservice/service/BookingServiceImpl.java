@@ -3,6 +3,7 @@ package ca.gbc.bookingservice.service;
 import ca.gbc.bookingservice.client.RoomServiceClient;
 import ca.gbc.bookingservice.dto.BookingRequest;
 import ca.gbc.bookingservice.dto.BookingResponse;
+import ca.gbc.bookingservice.event.BookingCreatedEvent;
 import ca.gbc.bookingservice.model.Booking;
 import ca.gbc.bookingservice.repository.BookingRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +26,7 @@ public class BookingServiceImpl implements BookingService {
     private final BookingRepository bookingRepository;
     private final MongoTemplate mongoTemplate;
     private final RoomServiceClient roomServiceClient;
+    private final KafkaTemplate<String, BookingCreatedEvent> kafkaTemplate;
 
 
     @Override
@@ -45,6 +48,11 @@ public class BookingServiceImpl implements BookingService {
                     .build();
 
             bookingRepository.save(booking);
+
+            BookingCreatedEvent bookingCreatedEvent = new BookingCreatedEvent(booking.getBookingNumber(), bookingRequest.userDetails().email());
+            log.info("Start - Sending OrderPlacedEvent {} to Kafka topic order -- placed", bookingCreatedEvent);
+            kafkaTemplate.send("order", "placed", bookingCreatedEvent);
+            log.info("Complete - Sent OrderPlacedEvent {} to Kafka topic order -- placed", bookingCreatedEvent);
 
             roomServiceClient.updateRoomAvailability(bookingRequest.roomId(), false);
 

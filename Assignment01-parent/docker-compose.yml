@@ -1,113 +1,128 @@
+version: '3.9'
 
 services:
+  # Application Services
+  booking-service:
+    build:
+      context: ./booking-service
+      dockerfile: ./Dockerfile
+    image: booking-service
+    container_name: booking-service
+    ports:
+      - "8095:8095"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - mongodb
+    networks:
+      - spring
 
-#  booking-service:
-#    image: booking-service
-#    ports:
-#      - "8095:8095"
-#    build:
-#      context: ./booking-service
-#      dockerfile: ./Dockerfile
-#    container_name: booking-service
-#    environment:
-#      SPRING_PROFILES_ACTIVE: docker
-#    depends_on:
-#      - mongodb
-#    networks:
-#      - spring
+  event-service:
+    build:
+      context: ./event-service
+      dockerfile: ./Dockerfile
+    image: event-service
+    container_name: event-service
+    ports:
+      - "8042:8042"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - mongodb-event
+      - user-service
+    networks:
+      - spring
 
-#  event-service:
-#    image: event-service
-#    ports:
-#      - "8042:8042"
-#    build:
-#      context: ./event-service
-#      dockerfile: ./Dockerfile
-#    container_name: event-service
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#    depends_on:
-#      - mongodb-event
-#      - user-service
-#    networks:
-#      - spring
-
-#  room-service:
-#    build:
-#      context: ./room-service
-#      dockerfile: ./Dockerfile
-#    container_name: room-service
-#    ports:
-#      - "8091:8090"
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-roomService:5432/room-service
-#      - SPRING_DATASOURCE_USERNAME=admin
-#      - SPRING_DATASOURCE_PASSWORD=password
-#    depends_on:
-#      - postgres-roomService
-#    networks:
-#      - spring
+  room-service:
+    build:
+      context: ./room-service
+      dockerfile: ./Dockerfile
+    container_name: room-service
+    ports:
+      - "8091:8091"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-roomService:5432/room-service
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: password
+    depends_on:
+      - postgres-roomService
+    networks:
+      - spring
 
   approval-service:
-    image: approval-service
-    ports:
-      - "8044:8044"
     build:
       context: ./approval-service
       dockerfile: ./Dockerfile
+    image: approval-service
     container_name: approval-service
+    ports:
+      - "8044:8044"
     environment:
-      - SPRING_PROFILES_ACTIVE=docker
+      SPRING_PROFILES_ACTIVE: docker
     depends_on:
       - mongodb-approval
     networks:
       - spring
 
-#  user-service:
-#    build:
-#      context: ./user-service
-#      dockerfile: ./Dockerfile
-#    container_name: user-service
-#    ports:
-#      - "8092:8092"
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-userService:5432/user-service
-#      - SPRING_DATASOURCE_USERNAME=admin
-#      - SPRING_DATASOURCE_PASSWORD=password
-#    depends_on:
-#      - postgres-userService
-#    networks:
-#      - spring
+  user-service:
+    build:
+      context: ./user-service
+      dockerfile: ./Dockerfile
+    container_name: user-service
+    ports:
+      - "8092:8092"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-userService:5432/user-service
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: password
+    depends_on:
+      - postgres-userService
+    networks:
+      - spring
 
-#  mongodb:
-#    image: mongo:latest
-#    container_name: Assignment01-mongodb
-#    ports:
-#      - "27017:27017"
-#    environment:
-#      - MONGO_INITDB_ROOT_USERNAME=admin
-#      - MONGO_INITDB_ROOT_PASSWORD=password
-#    volumes:
-#      - ./data/mongo/bookings:/data/db
-#      - ./local-docker-file/mongo/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-#    networks:
-#      - spring
+  api-gateway:
+    build:
+      context: ./api-gateway
+      dockerfile: ./Dockerfile
+    image: api-gateway
+    container_name: api-gateway-project
+    ports:
+      - "9000:9000"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - spring
 
-#  mongodb-event:
-#    image: mongo:latest
-#    container_name: mongodb-event
-#    ports:
-#      - "27018:27017"
-#    environment:
-#      - MONGO_INITDB_ROOT_USERNAME=admin
-#      - MONGO_INITDB_ROOT_PASSWORD=password
-#    volumes:
-#      - ./data/mongo/events:/data/db
-#      - ./local-docker-file/mongo-event/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-#    networks:
-#      - spring
+  # Databases
+  mongodb:
+    image: mongo:latest
+    container_name: Assignment01-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - ./data/mongo/bookings:/data/db
+      - ./local-docker-file/mongo/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - spring
+
+  mongodb-event:
+    image: mongo:latest
+    container_name: mongodb-event
+    ports:
+      - "27018:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - ./data/mongo/events:/data/db
+      - ./local-docker-file/mongo-event/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - spring
 
   mongodb-approval:
     image: mongo:latest
@@ -115,90 +130,95 @@ services:
     ports:
       - "27019:27017"
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=password
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
     volumes:
       - ./data/mongo/approvals:/data/db
       - ./local-docker-file/mongo-approval/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     networks:
       - spring
 
-#  postgres-roomService:
-#    image: postgres:latest
-#    container_name: postgres-roomService
-#    environment:
-#      - POSTGRES_DB=room-service
-#      - POSTGRES_USER=admin
-#      - POSTGRES_PASSWORD=password
-#    ports:
-#      - "5435:5432"
-#    volumes:
-#      - ./data/postgres/room:/var/lib/postgresql/data
-#      - ./local-docker-file/postgres/init/room/init.sql:/docker-entrypoint-initdb.d/init.sql
-#    networks:
-#      - spring
-#
-#  postgres-userService:
-#    image: postgres:latest
-#    container_name: postgres-userService
-#    environment:
-#      - POSTGRES_DB=user-service
-#      - POSTGRES_USER=admin
-#      - POSTGRES_PASSWORD=password
-#    ports:
-#      - "5436:5432"
-#    volumes:
-#      - ./data/postgres/user:/var/lib/postgresql/data
-#      - ./local-docker-file/postgres/init/user/init.sql:/docker-entrypoint-initdb.d/init.sql
-#    networks:
-#      - spring
-#
-#  mongo-express:
-#    image: mongo-express
-#    ports:
-#      - "8093:8081"
-#    environment:
-#      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
-#      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
-#      - ME_CONFIG_MONGODB_SERVER=mongodb
-#    container_name: assignment01-mongo-express
-#    depends_on:
-#      - mongodb
-#    networks:
-#      - spring
-#
-#  pgadmin:
-#    image: dpage/pgadmin4
-#    ports:
-#      - "8999:80"
-#    container_name: pgadmin
-#    environment:
-#      - PGADMIN_DEFAULT_EMAIL=user@domain.ca
-#      - PGADMIN_DEFAULT_PASSWORD=password
-#    depends_on:
-#      - postgres-roomService
-#      - postgres-userService
-#    networks:
-#      - spring
-
-  api-gateway:
-    container_name: api-gateway-project
-    image: api-gateway
+  postgres-roomService:
+    image: postgres:latest
+    container_name: postgres-roomService
     ports:
-      - "9000:9000"
-    build:
-      context: ./api-gateway  # The directory where the Dockerfile resides
-      dockerfile: ./Dockerfile    # Specify the Dockerfile for use to build the image
+      - "5435:5432"
     environment:
-      - SPRING_PROFILES_ACTIVE=docker
+      POSTGRES_DB: room-service
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./data/postgres/room:/var/lib/postgresql/data
+      - ./local-docker-file/postgres/init/room/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - spring
+
+  postgres-userService:
+    image: postgres:latest
+    container_name: postgres-userService
+    ports:
+      - "5436:5432"
+    environment:
+      POSTGRES_DB: user-service
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./data/postgres/user:/var/lib/postgresql/data
+      - ./local-docker-file/postgres/init/user/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - spring
+
+  postgres-keycloak:
+    image: postgres:latest
+    container_name: postgres-keycloak-project
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: keycloak
+      PG_DATA: /data/postgres
+    volumes:
+      - ./data/keycloak:/var/lib/postgresql/data
+    networks:
+      - spring
+
+  # Support Services
+  mongo-express:
+    image: mongo-express
+    container_name: assignment01-mongo-express
+    ports:
+      - "8093:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: password
+      ME_CONFIG_MONGODB_SERVER: mongodb
+    depends_on:
+      - mongodb
+    networks:
+      - spring
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    ports:
+      - "8999:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@domain.ca
+      PGADMIN_DEFAULT_PASSWORD: password
+    depends_on:
+      - postgres-roomService
+      - postgres-userService
     networks:
       - spring
 
   keycloak:
+    image: quay.io/keycloak/keycloak:24.0.1
     container_name: keycloak-project
     hostname: keycloak
-    image: quay.io/keycloak/keycloak:24.0.1
-    command: [ "start-dev", "--import-realm" ]
+    ports:
+      - "8080:8080"
+    command: ["start-dev", "--import-realm"]
     environment:
       DB_VENDOR: postgres
       DB_ADDR: postgres-keycloak
@@ -208,30 +228,58 @@ services:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: password
       ROOT_LOGLEVEL: DEBUG
-      JBOSS_LOG_MANAGER_ROOT_LOGGER: DEBUG, stdout, FILE
-    ports:
-      - "8080:8080"
-    depends_on:
-      - postgres-keycloak
     volumes:
       - ./realms/:/opt/keycloak/data/import
+    depends_on:
+      - postgres-keycloak
     networks:
       - spring
 
-  postgres-keycloak:
-    image: postgres
+  zookeeper:
+    image: confluentinc/cp-zookeeper
+    container_name: zookeeper-assignment02
+    hostname: zookeeper
     ports:
-      - "5434:5432"
-    container_name: postgres-keycloak-project
+      - "2181:2181"
     environment:
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=keycloak
-      - PG_DATA=/data/postgres
-    volumes:
-      - ./data/keycloak:/var/lib/postgresql/data
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
     networks:
       - spring
+
+  broker:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: broker-assignment02
+    ports:
+      - "9092:9092" # For external access
+      - "29092:29092" # For internal Docker network access
+    environment:
+        KAFKA_BROKER_ID: 1
+        KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+        KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+        KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:29092,PLAINTEXT_HOST://host.docker.internal:9092
+        KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+        KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true" # Optional: Allows Kafka to auto-create topics
+    depends_on:
+        - zookeeper
+    networks:
+        - spring
+
+  kafka-ui:
+      image: provectuslabs/kafka-ui
+      container_name: kafka-ui
+      ports:
+        - "8086:8080"
+      environment:
+        KAFKA_CLUSTERS_0_NAME: local
+        KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: broker:29092
+        KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+        DYNAMIC_CONFIG_ENABLED: "true" # Allows dynamic configuration changes
+        KAFKA_CLUSTERS_0_READONLY: "false" # Enables write operations via the UI
+      depends_on:
+        - broker
+      networks:
+        - spring
 
 volumes:
   mongodb-db:

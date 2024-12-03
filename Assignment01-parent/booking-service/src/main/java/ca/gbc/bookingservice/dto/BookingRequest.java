@@ -9,6 +9,13 @@ public record BookingRequest(
         Long roomId,
         Date checkIn,
         Date checkOut,
-        String purpose
-) {
+        String purpose,
+        UserDetails userDetails) {
+    public record UserDetails(
+            String firstName,
+            String lastName,
+            String email,
+            String phoneNumber
+    ) {}
 }
+
