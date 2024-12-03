@@ -9,6 +9,7 @@ import ca.gbc.approvalservice.model.Approval;
 import ca.gbc.approvalservice.repository.ApprovalRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import jakarta.transaction.Transactional;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -20,6 +21,7 @@ import java.util.List;
 @Service
 @Slf4j
 @RequiredArgsConstructor
+@Transactional
 public class ApprovalServiceImpl implements ApprovalService{
 
     private final ApprovalRepository approvalRepository;

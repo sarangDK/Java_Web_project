@@ -5,12 +5,12 @@ import ca.gbc.approvalservice.dto.EventResponse;
 
 import groovy.util.logging.Slf4j;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.service.annotation.GetExchange;
 
 
@@ -21,7 +21,7 @@ public interface EventClient {
 
     @GetExchange("api/v1/event/{eventId}")
     @CircuitBreaker(name = "event", fallbackMethod = "fallbackMethod")
-    @RequestMapping(method = RequestMethod.GET, value="/api/v1/event/{eventId}")
+    @Retry(name = "event")
     ResponseEntity<EventResponse> getEventById(@PathVariable String eventId);
 
     default boolean fallbackMethod(String eventName, Throwable throwable) {
