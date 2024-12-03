@@ -1,15 +1,19 @@
 package ca.gbc.bookingservice.client;
 
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.*;
+import groovy.util.logging.Slf4j;
 
-@FeignClient(value = "room-service", url = "${room.service.url}")
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.service.annotation.GetExchange;
+import org.springframework.web.service.annotation.PostExchange;
+import org.springframework.web.service.annotation.PutExchange;
+
+@Slf4j
 public interface RoomServiceClient {
 
-    @RequestMapping(method = RequestMethod.GET, value="/api/rooms/availability/{id}")
+    @GetExchange("/api/room/availability/{id}")
     boolean isRoomAvailable(@PathVariable("id") Long id);
 
-    @RequestMapping(method = RequestMethod.PUT, value="/api/rooms/availability/{id}")
+    @PutExchange("/api/v1/room/availability/{id}")
     void updateRoomAvailability(@PathVariable("id") Long id, @RequestParam("availability") boolean availability);
 }
 

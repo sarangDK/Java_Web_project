@@ -19,7 +19,7 @@ public interface EventClient {
 
     Logger log = LoggerFactory.getLogger(EventClient.class);
 
-    @GetExchange("api/v1/event/{eventId}")
+    @GetExchange("/api/v1/event/{eventId}")
     @CircuitBreaker(name = "event", fallbackMethod = "fallbackMethod")
     @Retry(name = "event")
     ResponseEntity<EventResponse> getEventById(@PathVariable String eventId);
