@@ -37,7 +37,6 @@ dependencies {
 	testImplementation("io.rest-assured:rest-assured:5.4.0")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	annotationProcessor("org.projectlombok:lombok")
-	implementation("org.springframework.cloud:spring-cloud-starter-openfeign:4.0.3")
     implementation("org.springframework.cloud:spring-cloud-starter-contract-stub-runner:4.1.4")
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:2.6.0")

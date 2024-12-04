@@ -4,7 +4,6 @@ import ca.gbc.roomservice.dto.RoomRequest;
 import ca.gbc.roomservice.dto.RoomResponse;
 import ca.gbc.roomservice.model.Room;
 import ca.gbc.roomservice.repository.RoomRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -14,11 +13,9 @@ import java.util.List;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-@Transactional
 public class RoomServiceImpl implements RoomService {
 
     private final RoomRepository roomRepository;
-
 
 
     @Override

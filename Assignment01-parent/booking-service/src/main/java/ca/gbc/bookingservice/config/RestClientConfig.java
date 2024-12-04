@@ -2,8 +2,6 @@ package ca.gbc.bookingservice.config;
 
 
 import ca.gbc.bookingservice.client.RoomServiceClient;
-import org.apache.hc.core5.http.impl.nio.ClientHttp1IOEventHandler;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.ClientHttpRequestFactories;
 import org.springframework.boot.web.client.ClientHttpRequestFactorySettings;
@@ -26,6 +24,7 @@ public class RestClientConfig {
 
     @Bean
     public RoomServiceClient roomServiceClient() {
+
         RestClient restClient = RestClient.builder()
                 .baseUrl(roomServiceUrl)
                 .requestFactory(getClientRequestFactory())
@@ -33,6 +32,7 @@ public class RestClientConfig {
 
         var restClientAdapter = RestClientAdapter.create(restClient);
         var httpServiceProxyFactory = HttpServiceProxyFactory.builderFor(restClientAdapter).build();
+
         return httpServiceProxyFactory.createClient(RoomServiceClient.class);
     }
 
