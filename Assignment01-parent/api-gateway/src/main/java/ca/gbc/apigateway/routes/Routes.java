@@ -43,7 +43,7 @@ public class Routes {
     public RouterFunction<ServerResponse> approvalServiceRoute() {
         log.info("Initializing approval service route with URL: {}", approvalServiceUrl);
         return GatewayRouterFunctions.route("approval_service")
-                .route(RequestPredicates.path("/api/v1/approval"), HandlerFunctions.http(approvalServiceUrl))
+                .route(RequestPredicates.path("/api/v1/approval/**"), HandlerFunctions.http(approvalServiceUrl))
                 .filter(CircuitBreakerFilterFunctions.circuitBreaker("approvalServiceCircuitBreaker",
                         URI.create("forward:/fallbackRoute")))
                 .build();
@@ -54,7 +54,7 @@ public class Routes {
     public RouterFunction<ServerResponse> bookingServiceRoute() {
         log.info("Initializing order service route with URL: {}", bookingServiceUrl);
         return GatewayRouterFunctions.route("booking_service")
-                .route(RequestPredicates.path("/api/v1/booking"), HandlerFunctions.http(bookingServiceUrl))
+                .route(RequestPredicates.path("/api/v1/booking/**"), HandlerFunctions.http(bookingServiceUrl))
                 .filter(CircuitBreakerFilterFunctions.circuitBreaker("bookingServiceCircuitBreaker",
                         URI.create("forward:/fallbackRoute")))
                 .build();
@@ -64,7 +64,7 @@ public class Routes {
     public RouterFunction<ServerResponse> eventServiceRoute() {
         log.info("Initializing event service route with URL: {}", eventServiceUrl);
         return GatewayRouterFunctions.route("event_service")
-                .route(RequestPredicates.path("/api/v1/event"), HandlerFunctions.http(eventServiceUrl))
+                .route(RequestPredicates.path("/api/v1/event/**"), HandlerFunctions.http(eventServiceUrl))
                 .filter(CircuitBreakerFilterFunctions.circuitBreaker("eventServiceCircuitBreaker",
                         URI.create("forward:/fallbackRoute")))
                 .build();
@@ -74,7 +74,7 @@ public class Routes {
     public RouterFunction<ServerResponse> roomServiceRoute() {
         log.info("Initializing room service route with URL: {}", roomServiceUrl);
         return GatewayRouterFunctions.route("room_service")
-                .route(RequestPredicates.path("/api/v1/room"), HandlerFunctions.http(roomServiceUrl))
+                .route(RequestPredicates.path("/api/v1/room/**"), HandlerFunctions.http(roomServiceUrl))
                 .filter(CircuitBreakerFilterFunctions.circuitBreaker("roomServiceCircuitBreaker",
                         URI.create("forward:/fallbackRoute")))
                 .build();
@@ -84,7 +84,7 @@ public class Routes {
     public RouterFunction<ServerResponse> userServiceRoute() {
         log.info("Initializing user service route with URL: {}", userServiceUrl);
         return GatewayRouterFunctions.route("user_service")
-                .route(RequestPredicates.path("/api/v1/user"), HandlerFunctions.http(userServiceUrl))
+                .route(RequestPredicates.path("/api/v1/user/**"), HandlerFunctions.http(userServiceUrl))
                 .filter(CircuitBreakerFilterFunctions.circuitBreaker("userServiceCircuitBreaker",
                         URI.create("forward:/fallbackRoute")))
                 .build();
