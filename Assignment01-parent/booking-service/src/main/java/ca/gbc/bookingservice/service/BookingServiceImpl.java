@@ -53,7 +53,7 @@ public class BookingServiceImpl implements BookingService {
 
             BookingCreatedEvent bookingCreatedEvent = new BookingCreatedEvent(booking.getBookingNumber(), bookingRequest.userDetails().email());
             log.info("Start - Sending OrderPlacedEvent {} to Kafka topic order -- placed", bookingCreatedEvent);
-            kafkaTemplate.send("order", "placed", bookingCreatedEvent);
+            kafkaTemplate.send("booking-created", "placed", bookingCreatedEvent);
             log.info("Complete - Sent OrderPlacedEvent {} to Kafka topic order -- placed", bookingCreatedEvent);
 
             roomServiceClient.updateRoomAvailability(bookingRequest.roomId(), false);

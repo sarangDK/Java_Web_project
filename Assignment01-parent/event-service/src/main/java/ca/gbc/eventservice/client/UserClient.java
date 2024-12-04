@@ -10,7 +10,7 @@ import org.springframework.web.service.annotation.GetExchange;
 public interface UserClient {
 
     Logger log = LoggerFactory.getLogger(UserClient.class);
-    @GetExchange("/api/v1/user")
+    @GetExchange("/api/v1/user/isStaff/{userId}")
     String isStaff(@PathVariable("userId") Long userId);
 
     default boolean fallbackMethod(String userName, Throwable throwable) {
