@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 
@@ -36,6 +37,7 @@ public class ApprovalController {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('client_staff')")
     public ResponseEntity<List<ApprovalResponse>> getAllApprovals() {
         List<ApprovalResponse> approvals = approvalService.getAllApproval();
         return ResponseEntity

@@ -43,6 +43,10 @@ dependencies {
     testImplementation("org.springframework.kafka:spring-kafka-test:3.3.0")
     testImplementation("org.testcontainers:kafka:1.20.4")
 
+    // Assign Role
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
+
 
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:2.6.0")
