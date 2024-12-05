@@ -281,6 +281,42 @@ services:
       networks:
         - spring
 
+  loki:
+    image: grafana/loki:main
+    container_name: loki-project
+    command: [ '-config.file=/etc/loki/local-config.yaml' ]
+    ports:
+      - '3100:3100'
+    networks:
+      - spring
+
+  prometheus:
+    image: prom/prometheus:v2.46.0
+    container_name: prometheus-project
+    command:
+      - --enable-feature=exemplar-storage
+      - --config.file=/etc/prometheus/prometheus.yml
+    volumes:
+      - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - '9090:9090'
+    networks:
+      - spring
+
+  grafana:
+    image: grafana/grafana:10.1.0
+    container_name: grafana-project
+    volumes:
+      - ./docker/grafana:/etc/grafana/provisioning/datasources:ro
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
+    ports:
+      - '3000:3000'
+    networks:
+      - spring
+
 volumes:
   mongodb-db:
     driver: local
