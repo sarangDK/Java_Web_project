@@ -14,3 +14,21 @@ scrape_configs:
       - targets: ['approval-service:8044'] ## only for demo purposes don't use host.docker.internal in production
         labels:
           application: 'Approval Service'
+  - job_name: 'approval-service-local'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: [ 'host.docker.internal:8044' ] ## only for demo purposes don't use host.docker.internal in production
+        labels:
+          application: 'Approval Service Local'
+  - job_name: 'event-service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: [ 'event-service:8042' ] ## only for demo purposes don't use host.docker.internal in production
+        labels:
+          application: 'Event Service '
+  - job_name: 'event-service-local'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: [ 'host.docker.internal:8042' ] ## only for demo purposes don't use host.docker.internal in production
+        labels:
+          application: 'Event Service Local'

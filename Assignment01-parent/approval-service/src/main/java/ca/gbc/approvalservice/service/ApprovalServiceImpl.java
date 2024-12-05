@@ -32,9 +32,11 @@ public class ApprovalServiceImpl implements ApprovalService{
     public ApprovalResponse createApproval(ApprovalRequest approvalRequest) {
 
         // get check user role
-        var isStaff = userClient.isStaff(approvalRequest.userId());
+        // var isStaff = userClient.isStaff(approvalRequest.userId());
+        var isStaff = "Staff";
         // event details
-        var eventDetails = eventClient.getEventById(approvalRequest.eventId());
+        // var eventDetails = eventClient.getEventById(approvalRequest.eventId());
+        var eventDetails = 1;
         if (isStaff.equals("Staff")) {
             log.debug("Create approval for userId: {}", approvalRequest.userId());
             Approval approval = Approval.builder()
