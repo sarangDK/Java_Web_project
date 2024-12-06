@@ -5,7 +5,7 @@
 FROM gradle:8-jdk22-alpine AS builder
 
 # Set the working directory - the location of the source code
-COPY --chown=gradle:gradele . /home/gradle/src
+COPY --chown=gradle:gradle . /home/gradle/src
 
 WORKDIR /home/gradle/src
 
