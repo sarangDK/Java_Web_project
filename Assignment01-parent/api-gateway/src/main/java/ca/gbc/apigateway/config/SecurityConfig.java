@@ -21,7 +21,7 @@ public class SecurityConfig {
             "/v3/api-docs/**",
             "/swagger-resource/**",
             "/api-docs/**",
-            "aggregate/**"
+            "/aggregate/**"
     };
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {

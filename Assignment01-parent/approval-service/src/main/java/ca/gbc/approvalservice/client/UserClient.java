@@ -14,7 +14,7 @@ import org.springframework.web.service.annotation.GetExchange;
 public interface UserClient {
 
     Logger log = LoggerFactory.getLogger(UserClient.class);
-    @GetExchange("/api/v1/user")
+    @GetExchange("/api/v1/user/{userId}")
     @CircuitBreaker(name = "user", fallbackMethod = "fallbackMethod")
     @Retry(name = "user")
     String isStaff(@PathVariable("userId") Long userId);
