@@ -64,6 +64,12 @@ public class RoomController {
     // Check if a room is available
     @GetMapping("/availability/{id}")
     public boolean isRoomAvailable(@PathVariable Long id) {
+        try{
+            Thread.sleep(5000);
+        }catch(InterruptedException e){
+            throw new RuntimeException(e);
+        }
+
         return roomService.isRoomAvailable(id);
     }
 

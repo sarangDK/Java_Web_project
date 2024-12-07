@@ -32,8 +32,8 @@ public class ApprovalServiceImpl implements ApprovalService{
     public ApprovalResponse createApproval(ApprovalRequest approvalRequest) {
 
         // get check user role
-        // var isStaff = userClient.isStaff(approvalRequest.userId());
-        var isStaff = "Staff";
+        var isStaff = userClient.isStaff(approvalRequest.userId());
+        //var isStaff = "Staff";
         // event details
         // var eventDetails = eventClient.getEventById(approvalRequest.eventId());
         var eventDetails = 1;

@@ -24,8 +24,8 @@ public interface EventClient {
     @Retry(name = "event")
     ResponseEntity<EventResponse> getEventById(@PathVariable String eventId);
 
-    default boolean fallbackMethod(String eventName, Throwable throwable) {
-        log.info("Cannot get event for event name {}, failure reason: {}", eventName, throwable.getMessage());
+    default boolean fallbackMethod(String eventId, Throwable throwable) {
+        log.info("Cannot get event for id {}, failure reason: {}", eventId, throwable.getMessage());
         return false;
     }
 }

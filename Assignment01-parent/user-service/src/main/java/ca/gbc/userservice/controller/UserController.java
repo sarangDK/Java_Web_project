@@ -48,6 +48,12 @@ public class UserController {
     @GetMapping("/isStaff/{userId}")
     @ResponseStatus(HttpStatus.OK)
     public String isStaff(@PathVariable("userId") Long userId){
+
+        try{
+            Thread.sleep(5000);
+        }catch(InterruptedException e){
+            throw new RuntimeException(e);
+        }
         return userService.getType(userId).type_name();
     }
 
