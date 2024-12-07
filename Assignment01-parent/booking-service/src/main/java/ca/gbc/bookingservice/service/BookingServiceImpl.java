@@ -32,15 +32,12 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public BookingResponse createBooking(BookingRequest bookingRequest) {
-        try {
-            log.info("Call isRoomAvailable with room id: {}", bookingRequest.roomId());
-            var isRoomAvailable = roomServiceClient.isRoomAvailable(bookingRequest.roomId());
-            log.info("After call isRoomAvailable");
-            if (!isRoomAvailable) {
-                throw new RuntimeException("Room with roomId: " + bookingRequest.roomId() + " is not available");
-            }
+        var isRoomAvailable = roomServiceClient.isRoomAvailable(bookingRequest.roomId());
 
-            Booking booking = Booking.builder()
+
+            log.info("Call isRoomAvailable with room id: {}", bookingRequest.roomId());
+            log.info("After call isRoomAvailable");
+            if (isRoomAvailable) {Booking booking = Booking.builder()
                     .bookingNumber(UUID.randomUUID().toString())
                     .userId(bookingRequest.userId())
                     .roomId(bookingRequest.roomId())
@@ -49,28 +46,30 @@ public class BookingServiceImpl implements BookingService {
                     .purpose(bookingRequest.purpose())
                     .build();
 
-            bookingRepository.save(booking);
+                bookingRepository.save(booking);
 
-            BookingCreatedEvent bookingCreatedEvent = new BookingCreatedEvent(booking.getBookingNumber(), bookingRequest.userDetails().email());
-            log.info("Start - Sending OrderPlacedEvent {} to Kafka topic order -- placed", bookingCreatedEvent);
-            kafkaTemplate.send("booking-created", "placed", bookingCreatedEvent);
-            log.info("Complete - Sent OrderPlacedEvent {} to Kafka topic order -- placed", bookingCreatedEvent);
+                BookingCreatedEvent bookingCreatedEvent = new BookingCreatedEvent(booking.getBookingNumber(), bookingRequest.userDetails().email());
+                log.info("Start - Sending OrderPlacedEvent {} to Kafka topic order -- placed", bookingCreatedEvent);
+                kafkaTemplate.send("booking-created", "placed", bookingCreatedEvent);
+                log.info("Complete - Sent OrderPlacedEvent {} to Kafka topic order -- placed", bookingCreatedEvent);
 
-            roomServiceClient.updateRoomAvailability(bookingRequest.roomId(), false);
+                roomServiceClient.updateRoomAvailability(bookingRequest.roomId(), false);
 
-            return new BookingResponse(
-                    booking.getBookingId(),
-                    booking.getBookingNumber(),
-                    booking.getUserId(),
-                    booking.getRoomId(),
-                    booking.getCheckIn(),
-                    booking.getCheckOut(),
-                    booking.getPurpose()
-            );
-        } catch (Exception e) {
-            log.error("Error occurred while creating booking: {}", e.getMessage(), e);
-            throw new RuntimeException("Failed to create booking: " + e.getMessage());
-        }
+                return new BookingResponse(
+                        booking.getBookingId(),
+                        booking.getBookingNumber(),
+                        booking.getUserId(),
+                        booking.getRoomId(),
+                        booking.getCheckIn(),
+                        booking.getCheckOut(),
+                        booking.getPurpose()
+                );
+            }else{
+                throw new RuntimeException("Room with roomId: " + bookingRequest.roomId() + " is not available");
+
+            }
+
+
     }
 
 

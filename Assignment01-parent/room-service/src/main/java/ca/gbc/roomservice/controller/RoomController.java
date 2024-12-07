@@ -5,6 +5,7 @@ import ca.gbc.roomservice.dto.RoomResponse;
 import ca.gbc.roomservice.service.RoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -64,15 +65,13 @@ public class RoomController {
     // Check if a room is available
     @GetMapping("/availability/{id}")
     public boolean isRoomAvailable(@PathVariable Long id) {
-        try{
-            Thread.sleep(5000);
-        }catch(InterruptedException e){
-            throw new RuntimeException(e);
-        }
 
         return roomService.isRoomAvailable(id);
     }
-
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<String> handleRuntimeException(RuntimeException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
 
 
 
