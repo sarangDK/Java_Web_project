@@ -1,0 +1,236 @@
+{
+	"info": {
+		"_postman_id": "d7df6087-eaef-4764-bd25-d35b16457d1b",
+		"name": "Assignment02",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38468951"
+	},
+	"item": [
+		{
+			"name": "Room",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "AvfSHdPasSNJJ8tUGHywpKYS7A21eoh0",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "http://keycloak:8080/realms/spring-microservices-security-realm/protocol/openid-connect/token",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "spring-client-credentials-id",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "Token",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\" : 5,\r\n    \"roomName\" : \"play Room\",\r\n    \"roomCapacity\" : \"40\",\r\n    \"roomAvailability\" : true,\r\n    \"roomFeatures\" : \"Play ground for large party, have huge audio, screen as well  \"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/v1/room/availableRooms",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v1",
+						"room",
+						"availableRooms"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "http://localhost:8095/api/v1/booking",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\" : 5,\r\n    \"roomName\" : \"play Room\",\r\n    \"roomCapacity\" : \"40\",\r\n    \"roomAvailability\" : true,\r\n    \"roomFeatures\" : \"Play ground for large party, have huge audio, screen as well  \"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/api/v1/room/availableRooms",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"v1",
+								"room",
+								"availableRooms"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "date",
+							"value": "Thu, 05 Dec 2024 20:43:04 GMT"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"roomId\": 5,\n        \"roomName\": \"play Room\",\n        \"roomCapacity\": \"40\",\n        \"roomAvailability\": true,\n        \"roomFeatures\": \"Play ground for large party, have huge audio, screen as well  \"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "booking",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessTokenUrl",
+							"value": "http://keycloak:8080/realms/assignment02/protocol/openid-connect/token",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "FXWzonHdKZV7vwzdJTC8LgIWy0SxxLdS",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "spring-client-credentials-id",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "Token",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": 1,\r\n  \"roomId\": 8,\r\n  \"checkIn\": \"2024-12-05T16:05:33.580Z\",\r\n  \"checkOut\": \"2024-12-05T16:05:33.580Z\",\r\n  \"purpose\": \"single trip\",\r\n  \"userDetails\": {\r\n    \"firstName\": \"Daekyung\",\r\n    \"lastName\": \"Park\",\r\n    \"email\": \"da980302@gmail.com\",\r\n    \"phoneNumber\": \"437-237-7339\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/v1/booking",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v1",
+						"booking"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

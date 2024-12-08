@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f009dbfb-f6fe-4f83-8eda-e2af7dd14908" name="Changes" comment="Steven - DEC2 / 5432 refused fixed">
+      <change afterPath="$PROJECT_DIR$/.idea/modules/api-gateway/Assignment01-parent.api-gateway.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/event-service/Assignment01-parent.event-service.main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/api-gateway/src/main/java/ca/gbc/apigateway/routes/Routes.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/api-gateway/src/main/java/ca/gbc/apigateway/routes/Routes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/api-gateway/src/main/resources/application-docker.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/api-gateway/src/main/resources/application-docker.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/api-gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/api-gateway/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/room-service/src/main/java/ca/gbc/roomservice/controller/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/room-service/src/main/java/ca/gbc/roomservice/controller/RoomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment01-parent/room-service/src/main/resources/application-docker.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01-parent/room-service/src/main/resources/application-docker.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +63,7 @@
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.ApiGatewayApplication.executor": "Run",
     "Spring Boot.ApprovalServiceApplication.executor": "Run",
     "Spring Boot.BookingServiceApplication.executor": "Run",
@@ -168,6 +166,7 @@
       <workItem from="1732901283893" duration="3353000" />
       <workItem from="1733097846174" duration="28000" />
       <workItem from="1733188853002" duration="5448000" />
+      <workItem from="1733634620124" duration="1090000" />
     </task>
     <task id="LOCAL-00001" summary="Steven - DEC2 / 5432 refused fixed">
       <option name="closed" value="true" />
