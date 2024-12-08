@@ -13,6 +13,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.List;
@@ -22,6 +23,7 @@ import java.util.UUID;
 @Service
 @Slf4j
 @RequiredArgsConstructor
+@Transactional
 public class BookingServiceImpl implements BookingService {
 
     private final BookingRepository bookingRepository;
@@ -34,10 +36,10 @@ public class BookingServiceImpl implements BookingService {
     public BookingResponse createBooking(BookingRequest bookingRequest) {
         var isRoomAvailable = roomServiceClient.isRoomAvailable(bookingRequest.roomId());
 
-
             log.info("Call isRoomAvailable with room id: {}", bookingRequest.roomId());
             log.info("After call isRoomAvailable");
-            if (isRoomAvailable) {Booking booking = Booking.builder()
+            if (isRoomAvailable) {
+                    Booking booking = Booking.builder()
                     .bookingNumber(UUID.randomUUID().toString())
                     .userId(bookingRequest.userId())
                     .roomId(bookingRequest.roomId())

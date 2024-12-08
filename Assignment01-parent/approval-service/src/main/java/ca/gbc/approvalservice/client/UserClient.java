@@ -8,19 +8,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.service.annotation.GetExchange;
 
-
-
 @Slf4j
 public interface UserClient {
 
     Logger log = LoggerFactory.getLogger(UserClient.class);
-    @GetExchange("/api/v1/user/{userId}")
+    @GetExchange("/api/v1/user/isStaff/{userId}")
     @CircuitBreaker(name = "user", fallbackMethod = "fallbackMethod")
     @Retry(name = "user")
     String isStaff(@PathVariable("userId") Long userId);
 
     default String fallbackMethod(Long userId, Throwable throwable) {
-        log.info("Cannot get user for id {}, failure reason: {}", userId, throwable.getMessage());
+        log.info("Fallback - Cannot get user for id {}, failure reason: {}", userId, throwable.getMessage());
         return "false";
     }
 }

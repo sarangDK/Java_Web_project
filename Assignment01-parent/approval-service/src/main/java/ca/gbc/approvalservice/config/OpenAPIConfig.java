@@ -1,6 +1,5 @@
 package ca.gbc.approvalservice.config;
 
-
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -17,9 +16,9 @@ public class OpenAPIConfig {
 
     @Bean
     public OpenAPI approvalServiceAPI() {
-
         return new OpenAPI()
-                .info(new Info().title("Approval Service API")
+                .info(new Info()
+                        .title("Approval Service API")
                         .description("This is the REST API for Approval Service")
                         .version(version)
                         .license(new License().name("Apache 2.0")))
