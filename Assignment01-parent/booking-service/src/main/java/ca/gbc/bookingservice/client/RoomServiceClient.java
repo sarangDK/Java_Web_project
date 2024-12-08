@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.service.annotation.GetExchange;
 import org.springframework.web.service.annotation.PutExchange;
+import groovy.util.logging.Slf4j;
 
 @Slf4j
 public interface RoomServiceClient {

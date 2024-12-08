@@ -23,7 +23,10 @@ public class RestClientConfig {
 
 
     @Bean
-    public RoomServiceClient roomServiceClient() {
+    public RoomServiceClient roomServiceClient() throws InterruptedException {
+
+        // for test
+        // Thread.sleep(5000);
 
         RestClient restClient = RestClient.builder()
                 .baseUrl(roomServiceUrl)
