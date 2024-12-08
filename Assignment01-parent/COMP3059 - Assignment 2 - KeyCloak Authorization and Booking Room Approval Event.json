@@ -1,0 +1,722 @@
+{
+  "info": {
+    "_postman_id": "8cbb77d9-606e-44a1-be02-af0a9756ae50",
+    "name": "COMP3059 - Assignment 2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "38149130"
+  },
+  "item": [
+    {
+      "name": "Get All Approval",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ4WXAyMnhaeGhuSHFBMHFZb2IyU1pPUUZmVjdxNGppRnQtVU1PVU9CcFNBIn0.eyJleHAiOjE3MzM1ODQ0MjAsImlhdCI6MTczMzU4NDEyMCwianRpIjoiZWMzOTJhZTgtNWRjNS00ZDRkLWJiMTQtNGFiZTJhYjc3YWY1IiwiaXNzIjoiaHR0cDovL2tleWNsb2FrOjgwODAvcmVhbG1zL3NwcmluZy1taWNyb3NlcnZpY2VzLXNlY3VyaXR5LXJlYWxtIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImFiZTk3ODdlLTNiOTAtNDRhZi05N2RjLTU5ODVjODAzMGNhYyIsInR5cCI6IkJlYXJlciIsImF6cCI6Im1pbmgiLCJzZXNzaW9uX3N0YXRlIjoiYTFlNGMxMTctZjI3ZS00YTNjLWEzYzktNmRlNjAzNTVjZGUwIiwiYWNyIjoiMSIsImFsbG93ZWQtb3JpZ2lucyI6WyIvKiJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJkZWZhdWx0LXJvbGVzLXNwcmluZy1taWNyb3NlcnZpY2VzLXNlY3VyaXR5LXJlYWxtIiwic3RhZmYiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7Im1pbmgiOnsicm9sZXMiOlsiY2xpZW50X3N0YWZmIl19LCJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiJhMWU0YzExNy1mMjdlLTRhM2MtYTNjOS02ZGU2MDM1NWNkZTAiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInByZWZlcnJlZF91c2VybmFtZSI6Im1pbmgtdGVzdCJ9.lzayKbK3WfFsOVEse5pWHBEINJl25_i0fmikX-lBJ6PRJMOzy2NEIHKEJklO5VhpzBdYOVk5Pe18ter9cH3KbP75T3wGNrLhHVu1qYt2QHtIUx5wtU3gzAl6jojefL_-yWADs9hh5iL1myYdeKURKb8Aj7ceyCyUwSU1zHcP5-ldVJoQ_3axwdy2aBMhDcRnc1l_ruO_YxA5I5Kz34Hj7zTw-nw988d9nlV7uaxF8b53y33GhM_vBTIS1sNk-GIwcX_iJ5pc2ysB3KeyGj249hCFdxeqrPrypyRAzg3LclCV-C85WHCpguDQBJ83q7A2_Yo4eoD91Cfh7JgraQrXOQ",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:9000/api/v1/approval",
+          "host": [
+            "localhost"
+          ],
+          "port": "9000",
+          "path": [
+            "api",
+            "v1",
+            "approval"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Check Health",
+      "request": {
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "clientSecret",
+              "value": "iY37sRkhLQIBSsemfFY618d7rhzfdcNd",
+              "type": "string"
+            },
+            {
+              "key": "accessTokenUrl",
+              "value": "http://keycloak:8080/realms/spring-microservices-security-realm/protocol/openid-connect/token",
+              "type": "string"
+            },
+            {
+              "key": "clientId",
+              "value": "spring-client-credentials-id",
+              "type": "string"
+            },
+            {
+              "key": "grant_type",
+              "value": "client_credentials",
+              "type": "string"
+            },
+            {
+              "key": "tokenName",
+              "value": "Token",
+              "type": "string"
+            },
+            {
+              "key": "addTokenTo",
+              "value": "header",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:9000/actuator/health",
+          "host": [
+            "localhost"
+          ],
+          "port": "9000",
+          "path": [
+            "actuator",
+            "health"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Event",
+      "request": {
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "clientSecret",
+              "value": "ux3QyquCBpZr5ORAtDs5JeB2LlJ0CwU4",
+              "type": "string"
+            },
+            {
+              "key": "accessTokenUrl",
+              "value": "http://keycloak:8080/realms/spring-microservices-security-realm/protocol/openid-connect/token",
+              "type": "string"
+            },
+            {
+              "key": "clientId",
+              "value": "spring-client-credentials-id",
+              "type": "string"
+            },
+            {
+              "key": "grant_type",
+              "value": "client_credentials",
+              "type": "string"
+            },
+            {
+              "key": "tokenName",
+              "value": "Token",
+              "type": "string"
+            },
+            {
+              "key": "addTokenTo",
+              "value": "header",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8042/api/v1/event",
+          "host": [
+            "localhost"
+          ],
+          "port": "8042",
+          "path": [
+            "api",
+            "v1",
+            "event"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Booking Room",
+      "request": {
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "accessTokenUrl",
+              "value": "http://keycloak:8080/realms/spring-microservices-security-realm/protocol/openid-connect/token",
+              "type": "string"
+            },
+            {
+              "key": "clientSecret",
+              "value": "iY37sRkhLQIBSsemfFY618d7rhzfdcNd",
+              "type": "string"
+            },
+            {
+              "key": "clientId",
+              "value": "spring-client-credentials-id",
+              "type": "string"
+            },
+            {
+              "key": "grant_type",
+              "value": "client_credentials",
+              "type": "string"
+            },
+            {
+              "key": "tokenName",
+              "value": "Token",
+              "type": "string"
+            },
+            {
+              "key": "addTokenTo",
+              "value": "header",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"bookingId\": \"1\",\r\n  \"bookingNumber\": \"string\",\r\n  \"userId\": 0,\r\n  \"roomId\": 9,\r\n  \"checkIn\": \"2024-12-03T05:14:18.929Z\",\r\n  \"checkOut\": \"2024-12-03T05:14:18.929Z\",\r\n  \"purpose\": \"string\",\r\n  \"userDetails\": {\r\n    \"firstName\": \"string\",\r\n    \"lastName\": \"string\",\r\n    \"email\": \"string\",\r\n    \"phoneNumber\": \"string\"\r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9000/api/v1/booking",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9000",
+          "path": [
+            "api",
+            "v1",
+            "booking"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Rooms",
+      "request": {
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "accessTokenUrl",
+              "value": "http://keycloak:8080/realms/spring-microservices-security-realm/protocol/openid-connect/token",
+              "type": "string"
+            },
+            {
+              "key": "clientSecret",
+              "value": "iY37sRkhLQIBSsemfFY618d7rhzfdcNd",
+              "type": "string"
+            },
+            {
+              "key": "clientId",
+              "value": "spring-client-credentials-id",
+              "type": "string"
+            },
+            {
+              "key": "grant_type",
+              "value": "client_credentials",
+              "type": "string"
+            },
+            {
+              "key": "tokenName",
+              "value": "Token",
+              "type": "string"
+            },
+            {
+              "key": "addTokenTo",
+              "value": "header",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:9000/api/v1/room",
+          "host": [
+            "localhost"
+          ],
+          "port": "9000",
+          "path": [
+            "api",
+            "v1",
+            "room"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get one room",
+      "request": {
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "clientSecret",
+              "value": "iY37sRkhLQIBSsemfFY618d7rhzfdcNd",
+              "type": "string"
+            },
+            {
+              "key": "accessTokenUrl",
+              "value": "http://localhost:8080/realms/spring-microservices-security-realm/protocol/openid-connect/token",
+              "type": "string"
+            },
+            {
+              "key": "clientId",
+              "value": "spring-client-credentials-id",
+              "type": "string"
+            },
+            {
+              "key": "grant_type",
+              "value": "client_credentials",
+              "type": "string"
+            },
+            {
+              "key": "tokenName",
+              "value": "Token",
+              "type": "string"
+            },
+            {
+              "key": "addTokenTo",
+              "value": "header",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:9000/api/v1/room/1",
+          "host": [
+            "localhost"
+          ],
+          "port": "9000",
+          "path": [
+            "api",
+            "v1",
+            "room",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create the room",
+      "request": {
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "accessTokenUrl",
+              "value": "http://keycloak:8080/realms/spring-microservices-security-realm/protocol/openid-connect/token",
+              "type": "string"
+            },
+            {
+              "key": "clientSecret",
+              "value": "iY37sRkhLQIBSsemfFY618d7rhzfdcNd",
+              "type": "string"
+            },
+            {
+              "key": "clientId",
+              "value": "spring-client-credentials-id",
+              "type": "string"
+            },
+            {
+              "key": "grant_type",
+              "value": "client_credentials",
+              "type": "string"
+            },
+            {
+              "key": "tokenName",
+              "value": "Token",
+              "type": "string"
+            },
+            {
+              "key": "addTokenTo",
+              "value": "header",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"roomName\": \"Minh\",\r\n  \"roomCapacity\": \"20\",\r\n  \"roomAvailability\": true,\r\n  \"roomFeatures\": \"string\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:9000/api/v1/room",
+          "host": [
+            "localhost"
+          ],
+          "port": "9000",
+          "path": [
+            "api",
+            "v1",
+            "room"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Event",
+      "request": {
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "accessTokenUrl",
+              "value": "http://keycloak:8080/realms/spring-microservices-security-realm/protocol/openid-connect/token",
+              "type": "string"
+            },
+            {
+              "key": "clientSecret",
+              "value": "iY37sRkhLQIBSsemfFY618d7rhzfdcNd",
+              "type": "string"
+            },
+            {
+              "key": "clientId",
+              "value": "spring-client-credentials-id",
+              "type": "string"
+            },
+            {
+              "key": "grant_type",
+              "value": "client_credentials",
+              "type": "string"
+            },
+            {
+              "key": "tokenName",
+              "value": "Token",
+              "type": "string"
+            },
+            {
+              "key": "addTokenTo",
+              "value": "header",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8042/api/v1/event",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8042",
+          "path": [
+            "api",
+            "v1",
+            "event"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Generate token Keycloak",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "grant_type",
+              "value": "password",
+              "type": "text"
+            },
+            {
+              "key": "client_id",
+              "value": "minh",
+              "type": "text"
+            },
+            {
+              "key": "username",
+              "value": "minh-test",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "password",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://keycloak:8080/realms/spring-microservices-security-realm/protocol/openid-connect/token",
+          "protocol": "http",
+          "host": [
+            "keycloak"
+          ],
+          "port": "8080",
+          "path": [
+            "realms",
+            "spring-microservices-security-realm",
+            "protocol",
+            "openid-connect",
+            "token"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Approval",
+      "request": {
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "clientSecret",
+              "value": "iY37sRkhLQIBSsemfFY618d7rhzfdcNd",
+              "type": "string"
+            },
+            {
+              "key": "accessTokenUrl",
+              "value": "http://keycloak:8080/realms/spring-microservices-security-realm/protocol/openid-connect/token",
+              "type": "string"
+            },
+            {
+              "key": "clientId",
+              "value": "spring-client-credentials-id",
+              "type": "string"
+            },
+            {
+              "key": "grant_type",
+              "value": "client_credentials",
+              "type": "string"
+            },
+            {
+              "key": "tokenName",
+              "value": "Token",
+              "type": "string"
+            },
+            {
+              "key": "addTokenTo",
+              "value": "header",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "admin",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "admin",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"approvalId\": \"1212456465\",\r\n    \"userId\": 12312,\r\n    \"eventId\": 1312,\r\n    \"isApproved\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8044/api/v1/approval",
+          "host": [
+            "localhost"
+          ],
+          "port": "8044",
+          "path": [
+            "api",
+            "v1",
+            "approval"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Generate token local",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ4WXAyMnhaeGhuSHFBMHFZb2IyU1pPUUZmVjdxNGppRnQtVU1PVU9CcFNBIn0.eyJleHAiOjE3MzM1ODQ0MjAsImlhdCI6MTczMzU4NDEyMCwianRpIjoiZWMzOTJhZTgtNWRjNS00ZDRkLWJiMTQtNGFiZTJhYjc3YWY1IiwiaXNzIjoiaHR0cDovL2tleWNsb2FrOjgwODAvcmVhbG1zL3NwcmluZy1taWNyb3NlcnZpY2VzLXNlY3VyaXR5LXJlYWxtIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImFiZTk3ODdlLTNiOTAtNDRhZi05N2RjLTU5ODVjODAzMGNhYyIsInR5cCI6IkJlYXJlciIsImF6cCI6Im1pbmgiLCJzZXNzaW9uX3N0YXRlIjoiYTFlNGMxMTctZjI3ZS00YTNjLWEzYzktNmRlNjAzNTVjZGUwIiwiYWNyIjoiMSIsImFsbG93ZWQtb3JpZ2lucyI6WyIvKiJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJkZWZhdWx0LXJvbGVzLXNwcmluZy1taWNyb3NlcnZpY2VzLXNlY3VyaXR5LXJlYWxtIiwic3RhZmYiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7Im1pbmgiOnsicm9sZXMiOlsiY2xpZW50X3N0YWZmIl19LCJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiJhMWU0YzExNy1mMjdlLTRhM2MtYTNjOS02ZGU2MDM1NWNkZTAiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInByZWZlcnJlZF91c2VybmFtZSI6Im1pbmgtdGVzdCJ9.lzayKbK3WfFsOVEse5pWHBEINJl25_i0fmikX-lBJ6PRJMOzy2NEIHKEJklO5VhpzBdYOVk5Pe18ter9cH3KbP75T3wGNrLhHVu1qYt2QHtIUx5wtU3gzAl6jojefL_-yWADs9hh5iL1myYdeKURKb8Aj7ceyCyUwSU1zHcP5-ldVJoQ_3axwdy2aBMhDcRnc1l_ruO_YxA5I5Kz34Hj7zTw-nw988d9nlV7uaxF8b53y33GhM_vBTIS1sNk-GIwcX_iJ5pc2ysB3KeyGj249hCFdxeqrPrypyRAzg3LclCV-C85WHCpguDQBJ83q7A2_Yo4eoD91Cfh7JgraQrXOQ",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "grant_type",
+              "value": "password",
+              "type": "text"
+            },
+            {
+              "key": "client_id",
+              "value": "minh",
+              "type": "text"
+            },
+            {
+              "key": "username",
+              "value": "minh-test",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "password",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8080/realms/spring-microservices-security-realm/protocol/openid-connect/token",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "realms",
+            "spring-microservices-security-realm",
+            "protocol",
+            "openid-connect",
+            "token"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "clientSecret",
+              "value": "iY37sRkhLQIBSsemfFY618d7rhzfdcNd",
+              "type": "string"
+            },
+            {
+              "key": "accessTokenUrl",
+              "value": "http://keycloak:8080/realms/spring-microservices-security-realm/protocol/openid-connect/token",
+              "type": "string"
+            },
+            {
+              "key": "clientId",
+              "value": "spring-client-credentials-id",
+              "type": "string"
+            },
+            {
+              "key": "grant_type",
+              "value": "client_credentials",
+              "type": "string"
+            },
+            {
+              "key": "tokenName",
+              "value": "Token",
+              "type": "string"
+            },
+            {
+              "key": "addTokenTo",
+              "value": "header",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "admin",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "admin",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:9000/actuator/prometheus",
+          "host": [
+            "localhost"
+          ],
+          "port": "9000",
+          "path": [
+            "actuator",
+            "prometheus"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Call Prometheus",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ4WXAyMnhaeGhuSHFBMHFZb2IyU1pPUUZmVjdxNGppRnQtVU1PVU9CcFNBIn0.eyJleHAiOjE3MzMzNzA1MzEsImlhdCI6MTczMzM3MDIzMSwianRpIjoiYWIwYzFmNzUtMzc5OS00NzJjLTk3MTUtMTUxNWVhOWI1YWM1IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9zcHJpbmctbWljcm9zZXJ2aWNlcy1zZWN1cml0eS1yZWFsbSIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJhYmU5Nzg3ZS0zYjkwLTQ0YWYtOTdkYy01OTg1YzgwMzBjYWMiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJtaW5oIiwic2Vzc2lvbl9zdGF0ZSI6IjBhZGZiMzhkLTNkY2MtNDExMC1hMDA3LTUzYjJmODdjNmYzZCIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiLyoiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1zcHJpbmctbWljcm9zZXJ2aWNlcy1zZWN1cml0eS1yZWFsbSIsInN0YWZmIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJtaW5oIjp7InJvbGVzIjpbImNsaWVudF9zdGFmZiJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwic2lkIjoiMGFkZmIzOGQtM2RjYy00MTEwLWEwMDctNTNiMmY4N2M2ZjNkIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJtaW5oLXRlc3QifQ.QdudFAdkT91VaoBSo6Y8rzvu5GItMLqYNNsJeMcmHnwAcPch4PEcn0rVhwvHQZWyzkbTRk62CKBq247IbcT_My2eqVH2vmuwCXrAqB5-X3NQaUptdAyyAgx7OE6KhaBP-PdlapVC6AHjTGHxid20q-pWb8XnZHAKQCq9I7ANpEymLxj49phtwbNN313IRmIt1-0gmP6ODsKyY3RWdmP3LxwZCTsIYzJJ_POu0t9Gzcn3tUdH6ddhFzRnTQ_Y-5dIaKZMwCv0viyLNm3E6Lm1auD1TwY1pwWxq9Y4nUdryiWWG2n8fic9PL9vRDq0Fmsg4X7sHAKTf7uvRn1JH47iPA",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8044/actuator/prometheus",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8044",
+          "path": [
+            "actuator",
+            "prometheus"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
